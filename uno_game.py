@@ -5,7 +5,7 @@ class GameState:
     
     def __init__(self):
         self.discard_pile = Deck(is_empty=True)
-        self.draw_pile = Deck(include_reverse=False, include_wilds=False, include_skips=False, include_draws=False)
+        self.draw_pile = Deck()
         self.draw_pile.shuffle()
         self.direction = 1
         self.current_action = None
@@ -37,39 +37,25 @@ class GameDirector:
         self.players = player_list
         self.current_player_index = 0
     
-    def call_the_player(self):
+    def handle_reverse(self):
         if self.game.current_action == "Reverse":
             self.game.direction = -self.game.direction
             print("Reverse!")
             self.game.current_action = None
-
-        # elif self.game.current_action == "Skip":
-        #     self.next_player()
-        #     print(f"{self.current_player()} was skipped.")
-        #     self.game.current_action = None
-
-        # elif self.game.current_action == "Draw 2":
-        #     self.next_player()
-        #     self.current_player().draw(2)
-        #     print(f"{self.current_player()} drew 2 cards.")
-        #     self.game.current_action = None
-
-        # elif self.game.current_action == "Draw 4":
-        #     self.next_player()
-        #     self.current_player().draw(4)
-        #     print(f"{self.current_player()} drew 4 cards.")
-        #     self.game.current_action = None
-        print(f"It's {self.current_player().name}'s turn.")
+    
+    def call_the_player(self):
         self.current_player().take_turn()
     
     def current_player(self):
         return self.players[self.current_player_index]
 
     def go_to_next_player(self):
-        if self.current_player_index > 2:
+        new_index = self.current_player_index + self.game.direction
+        if new_index > 3:
             self.current_player_index = 0
+        elif new_index < 0:
+            self.current_player_index = 3
         else:
-            self.current_player_index += self.game.direction
-        # return self.players[self.current_player_index]
+            self.current_player_index = new_index
 
     
