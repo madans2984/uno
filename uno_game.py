@@ -61,7 +61,6 @@ class GameDirector:
         #     self.game.current_action = None
         print(f"It's {self.current_player().name}'s turn.")
         self.current_player().take_turn()
-        print("Turn ended.")
     
     def current_player(self):
         return self.players[self.current_player_index]

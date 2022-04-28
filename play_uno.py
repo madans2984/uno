@@ -11,7 +11,7 @@ def main():
     view = TextView([user_player, bot1, bot2, bot3], game)
     director = GameDirector([user_player, bot1, bot2, bot3], game)
 
-    for _ in range(12):
+    while game.won == False:
         view.display(director.current_player())
         director.call_the_player()
         director.go_to_next_player()
