@@ -52,15 +52,17 @@ class UserPlayerTextController(Player):
     """
     def take_turn(self):
         if self.can_play():
-            while self.can_play():
+            while True:
                 index = input("Enter the index of the card you want to play: ")
-                self.play_card(self.hand[int(index)])
-                if self.num_cards() == 0:
-                    print(f"{self.name} wins!")
-                    return True
-                print(self.hand)
-            else:
-                print("No more plays possible.")
+                if self.play_card(self.hand[int(index)]):
+                    if self.num_cards() == 0:
+                        print(f"{self.name} wins!")
+                        return True
+                    else:
+                        return False
+                else:
+                    print("Invalid play, please try again.")
+
         else:
             print("No play possible - player draws 1 card.")
             self.draw(1)
