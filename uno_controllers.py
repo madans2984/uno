@@ -57,12 +57,10 @@ class UserPlayerTextController(Player):
                 if self.play_card(self.hand[int(index)]):
                     if self.num_cards() == 0:
                         print(f"{self.name} wins!")
-                        return True
-                    else:
-                        return False
+                        self.game.won = True
+                    return
                 else:
                     print("Invalid play, please try again.")
-
         else:
             print("No play possible - player draws 1 card.")
             self.draw(1)

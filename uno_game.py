@@ -10,6 +10,7 @@ class GameState:
         self.direction = 1
         self.current_action = None
         self.discard_pile.add_to_top(Card("Red","0"))
+        self.won = False
 
     def reuse_discard_pile(self):
         top_card = self.discard_pile.draw()
