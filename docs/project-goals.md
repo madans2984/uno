@@ -1,1 +1,3 @@
+## Project Goals
+
 In this project, our main goal was to create an interactive software that allows user to play a game of UNO by themselves with three CPU players to play with. We wanted to create a cute and aesthetic command line interface for the game that was also relatively simple to use. As is UNO is a fairly complicated game so we made a few modifications to our rules in order to make the game a bit simpler to play. A future update to this project could be to enable more features or to create a simple visual interface using a package like pygame.
