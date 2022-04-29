@@ -4,13 +4,24 @@ from uno_deck import Card, Deck
 class GameState:
     
     def __init__(self):
-        self.discard_pile = Deck(is_empty=True)
-        self.draw_pile = Deck()
-        self.draw_pile.shuffle()
         self.direction = 1
         self.current_action = None
-        self.discard_pile.add_to_top(Card("Red","0"))
         self.won = False
+        self.draw_pile = Deck()
+        self.draw_pile.shuffle()
+        self.discard_pile = Deck(is_empty=True)
+
+        # Find the first non-action card, make it the current card (top of
+        # discard pile), put all cards before the first non-action card at the
+        # bottom of the deck, and shuffle.
+        cards = self.draw_pile.draw(1)
+        while (cards[-1].symbol == "Reverse" or cards[-1].symbol == "Skip"
+            or cards[-1].symbol == "+2" or cards[-1].symbol == "+4"
+            or cards[-1].symbol == ""):
+            cards.extend(self.draw_pile.draw(1))
+        self.discard_pile.add_to_top(cards[-1])
+        self.draw_pile.add_to_bottom(cards[:-1])
+        self.draw_pile.shuffle()
 
     def reuse_discard_pile(self):
         top_card = self.discard_pile.draw()

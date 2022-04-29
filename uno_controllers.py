@@ -15,6 +15,9 @@ class Player(ABC):
 
         if self.can_play():
             self.choose_card()
+            if self.num_cards() == 0:
+                self.game.won = True
+                print(f"{self.name} won!")
         else:
             print(f"No play possible - {self.name} draws 1 card.")
             self.draw(1)
@@ -26,13 +29,13 @@ class Player(ABC):
             self.game.current_action = None
             return True
 
-        if self.game.current_action == "Draw 2":
+        if self.game.current_action == "+2":
             self.draw(2)
             print(f"{self.name} drew 2 cards and misses their turn.")
             self.game.current_action = None
             return True
 
-        if self.game.current_action == "Draw 4":
+        if self.game.current_action == "+4":
             self.draw(4)
             print(f"{self.name} drew 4 cards and misses their turn.")
             self.game.current_action = None
