@@ -14,7 +14,7 @@ styles=[BLUE, GREEN, YELLOW, RED, WHITE]
 
 for i, c in enumerate(cards):
     Art = text2art(c, font='block')
-    
+
     print(styles[i % len(styles)] + Art + WHITE)
 
 f= open('color_r.txt', 'r')
