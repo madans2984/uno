@@ -77,7 +77,7 @@ class Deck:
                         self.cards.append(Card(color,"Skip"))
                     if include_draws and include_skips:
                         self.cards.append(Card(color,"+2"))
-            for _ in range(4):
+            for _ in range(6):
                 if include_wilds:
                     self.cards.append(Card("Wild",""))
                 if include_draws and include_skips and include_wilds:
