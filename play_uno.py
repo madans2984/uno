@@ -1,6 +1,6 @@
 from uno_game import GameState, GameDirector
 from uno_controllers import UserPlayerTextController, BotPlayer
-from uno_views import TextView
+from uno_views import TextView, ColorTextView
 
 def main():
     game = GameState()
@@ -8,7 +8,7 @@ def main():
     bot1 = BotPlayer(game, "Bot1", "Bot")
     bot2 = BotPlayer(game, "Bot2", "Bot")
     bot3 = BotPlayer(game, "Bot3", "Bot")
-    view = TextView([user_player, bot1, bot2, bot3], game)
+    view = ColorTextView([user_player, bot1, bot2, bot3], game)
     director = GameDirector([user_player, bot1, bot2, bot3], game)
 
     while game.won is False:
