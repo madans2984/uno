@@ -1,6 +1,6 @@
 from art import *
 
-cards = "1234567890R"
+cards = "O0123456789"
 PURPLE = '\033[95m'
 BLUE = '\033[94m'
 CYAN = '\033[96m'
@@ -17,9 +17,9 @@ for i, c in enumerate(cards):
 
     print(styles[i % len(styles)] + Art + WHITE)
 
-f= open('color_r.txt', 'r')
-letter = f.read()
-letter = letter.replace("W", WHITE)
-letter = letter.replace("C", PURPLE)
-print(letter)
-f.close()
+# f= open('color_r.txt', 'r')
+# letter = f.read()
+# letter = letter.replace("W", WHITE)
+# letter = letter.replace("C", PURPLE)
+# print(letter)
+# f.close()
