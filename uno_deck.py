@@ -28,13 +28,13 @@ class Card:
         before.
         """
         self.chosen_color = ""
-    
+
     @property
     def color(self):
         if self._color == "Wild" and self.chosen_color != "":
             return self.chosen_color
         return self._color
-    
+
     def __repr__(self):
         return f"{self.color} {self.symbol}"
 
@@ -67,7 +67,7 @@ class Deck:
 
         self.cards = []
         if not is_empty:
-            for _ in range(2): 
+            for _ in range(2):
                 for color in ["Red", "Blue", "Green", "Yellow"]:
                     for symbol in range(0,10):
                         self.cards.append(Card(color,str(symbol)))
