@@ -41,7 +41,7 @@ class TextView(UnoView):
     # def display_other_players(self): ## IN PROGRESS -- jules
     #     ne = "\u2197"
     #     se = "\u2198"
-    #     sw = "\u2199"
+        # sw = "\u2199"
     #     nw = "\u2196"
     #     side_name_width = 7
     #     half_width = 8
