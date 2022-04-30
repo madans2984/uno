@@ -9,7 +9,7 @@ There are a few special cards which have actions associated with them.
     - The Skip card skips the next player's turn.      
     - The Plus 2 card has the next player draw 2 cards and skips their turn.     
     - The Wild Plus 4 card has the next player draw 4 cards and skips their turn. It also allows the current player to change the color in play.     
-    - The Reverse card reverse the order of game play.        
+    - The Reverse card reverses the order of game play.        
 
 We made two main modifications to our game rules compared to how UNO is typically played. First, we don't have a rule where you need to call UNO once you have your last card. That rule relies on human observation and when playing with bots it doesn't make as much sense. Additionally we decided that special cards cannot be stacked meaning that there would be no cumulative effect for them.
 

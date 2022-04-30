@@ -55,7 +55,7 @@ class Player(ABC):
                 card.symbol == "+4"):
                 self.game.current_action = card.symbol
                 print(f"The current action is now {self.game.current_action}.")
- 
+
             self.game.discard_pile.add_to_top(card)
             self.hand.remove(card)
             return True
@@ -63,14 +63,14 @@ class Player(ABC):
             return False
 
     def check_play(self, card):
-        if (card.color == self.game.current_color() or 
+        if (card.color == self.game.current_color() or
             card.symbol == self.game.current_symbol() or card.color == "Wild"):
             return True
         return False
 
     def num_cards(self):
         return len(self.hand)
-    
+
     def draw(self, num_cards):
         self.hand.extend(self.game.draw_pile.draw(num_cards))
 
@@ -109,28 +109,28 @@ class UserPlayerTextController(Player):
                 print(f"Invalid input. Please enter an integer between 0 and"
                     f" {self.num_cards()-1}.")
 
-            
+
 
     def choose_color(self, card):
         while True:
-                text = input("What color should the new card be?"
+            text = input("What color should the new card be?"
                     " (r/g/b/y):")
-                if text == "r":
-                    card.chosen_color = "Red"
-                    return card
-                elif text == "g":
-                    card.chosen_color = "Green"
-                    return card
-                elif text == "b":
-                    card.chosen_color = "Blue"
-                    return card
-                elif text == "y":
-                    card.chosen_color = "Yellow"
-                    return card
-                else:
-                    print("That is not a valid input. Please enter 'r' for"
-                        " Red, 'g' for Green, 'b' for Blue, or 'y' for"
-                        " Yellow.")
+            if text == "r":
+                card.chosen_color = "Red"
+                return card
+            elif text == "g":
+                card.chosen_color = "Green"
+                return card
+            elif text == "b":
+                card.chosen_color = "Blue"
+                return card
+            elif text == "y":
+                card.chosen_color = "Yellow"
+                return card
+            else:
+                print("That is not a valid input. Please enter 'r' for"
+                    " Red, 'g' for Green, 'b' for Blue, or 'y' for"
+                    " Yellow.")
 
 class BotPlayer(Player):
     """

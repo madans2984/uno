@@ -11,7 +11,7 @@ def main():
     view = TextView([user_player, bot1, bot2, bot3], game)
     director = GameDirector([user_player, bot1, bot2, bot3], game)
 
-    while game.won == False:
+    while game.won is False:
         view.display(director.current_player(), always_show_card_count=True, show_bot_hands=True)
         director.call_the_player()
         director.handle_reverse()

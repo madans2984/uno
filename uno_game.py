@@ -2,7 +2,7 @@ import random
 from uno_deck import Card, Deck
 
 class GameState:
-    
+
     def __init__(self):
         self.direction = 1
         self.current_action = None
@@ -47,16 +47,16 @@ class GameDirector:
         self.game = game_state
         self.players = player_list
         self.current_player_index = 0
-    
+
     def handle_reverse(self):
         if self.game.current_action == "Reverse":
             self.game.direction = -self.game.direction
             print("Reverse!")
             self.game.current_action = None
-    
+
     def call_the_player(self):
         self.current_player().take_turn()
-    
+
     def current_player(self):
         return self.players[self.current_player_index]
 
@@ -68,5 +68,3 @@ class GameDirector:
             self.current_player_index = 3
         else:
             self.current_player_index = new_index
-
-    
