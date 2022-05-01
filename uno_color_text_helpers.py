@@ -46,7 +46,7 @@ big_card_files = {"0": "color_zero.txt",
                     "9" : "color_nine.txt",
                     "Reverse": "color_reverse.txt",
                     "Skip": "color_skip.txt",
-                    "": "color_wild.txt", # Wild
+                    "": "color_wild_blank.txt", # Wild
                     "+2": "color_d2.txt",
                     "+4": "color_d4.txt" }
 

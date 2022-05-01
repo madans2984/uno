@@ -5,9 +5,9 @@ from uno_views import TextView, ColorTextView
 def main():
     game = GameState()
     user_player = UserPlayerTextController(game, "User", "User")
-    bot1 = BotPlayer(game, "Bot1", "Bot")
-    bot2 = BotPlayer(game, "Bot2", "Bot")
-    bot3 = BotPlayer(game, "Bot3", "Bot")
+    bot1 = BotPlayer(game, "Bot 1", "Bot")
+    bot2 = BotPlayer(game, "Bot 2", "Bot")
+    bot3 = BotPlayer(game, "Bot 3", "Bot")
     view = ColorTextView([user_player, bot1, bot2, bot3], game)
     director = GameDirector([user_player, bot1, bot2, bot3], game)
 
