@@ -1,6 +1,6 @@
 
 from abc import ABC, abstractmethod
-from uno_color_text_helpers import put_in_card, color_card_rep, print_cards
+from uno_color_text_helpers import put_in_card, color_card_rep, print_cards, get_big_card
 
 class UnoView(ABC):
 
@@ -63,7 +63,7 @@ class TextView(UnoView):
 
 
     def display_current_card(self):
-        print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}")
+        print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}.")
 
     def display_hand(self, player):
         print(f"{player.name}'s hand:")
@@ -76,13 +76,21 @@ class ColorTextView(UnoView):
 
     def display_current_card(self):
         print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}")
+        card_rep = get_big_card(self.game.current_symbol())
+        card_rep = color_card_rep(card_rep, self.game.current_color())
+        print_cards([card_rep])
 
     def display_hand(self, player):
         print(f"{player.name}'s hand:")
         card_reps = []
+        index_str = ""
+        for i in range(1,len(player.hand)+1):
+            index_str += str(i).center(6)
+        
         for card in player.hand:
             card_rep = put_in_card(card.symbol)
             card_rep = color_card_rep(card_rep, card.color)
             card_reps.append(card_rep)
         print_cards(card_reps)
+        print(index_str)
             

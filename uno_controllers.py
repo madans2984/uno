@@ -54,7 +54,7 @@ class Player(ABC):
                 card.symbol == "+2" or
                 card.symbol == "+4"):
                 self.game.current_action = card.symbol
-                print(f"The current action is now {self.game.current_action}.")
+                # print(f"The current action is now {self.game.current_action}.")
 
             self.game.discard_pile.add_to_top(card)
             self.hand.remove(card)
@@ -98,23 +98,23 @@ class UserPlayerTextController(Player):
     def choose_card(self):
         while True:
             try:
-                index = int(input("Enter the index of the card you want to play: "))
-                if self.play_card(self.hand[int(index)]):
+                index = int(input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
+                if self.play_card(self.hand[int(index-1)]):
                     return
                 else:
                     print("Invalid play. Your card must match the color or the"
                         " symbol of the current card, \n"
                         "or be a Wild card. Please try again.")
             except (IndexError, ValueError):
-                print(f"Invalid input. Please enter an integer between 0 and"
-                    f" {self.num_cards()-1}.")
+                print(f"Invalid input. Please enter an integer between 1 and"
+                    f" {self.num_cards()}.")
 
 
 
     def choose_color(self, card):
         while True:
             text = input("What color should the new card be?"
-                    " (r/g/b/y):")
+                    " (r/g/b/y): ")
             if text == "r":
                 card.chosen_color = "Red"
                 return card
