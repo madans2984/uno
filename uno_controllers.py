@@ -1,4 +1,5 @@
 import random
+import time
 from abc import ABC, abstractmethod
 
 class Player(ABC):
@@ -138,6 +139,7 @@ class BotPlayer(Player):
     def choose_card(self):
         for card in self.hand:
             if self.play_card(card):
+                time.sleep(1)
                 return
 
     def choose_color(self, card):
