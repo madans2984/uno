@@ -13,6 +13,7 @@ def main():
 
     while game.won is False:
         view.display(director.current_player(), always_show_card_count=True, show_bot_hands=True)
+        # view.display_other_players_and_current_card()
         director.call_the_player()
         director.handle_reverse()
         director.go_to_next_player()
