@@ -35,21 +35,21 @@ color_reps = {
     "Yellow": YELLOW,
 }
 
-big_card_files = {"0": "color_zero.txt",
-                    "1": "color_one.txt",
-                    "2": "color_two.txt",
-                    "3": "color_three.txt",
-                    "4": "color_four.txt",
-                    "5": "color_five.txt",
-                    "6": "color_six.txt",
-                    "7": "color_seven.txt",
-                    "8": "color_eight.txt",
-                    "9" : "color_nine.txt",
-                    "Reverse": "color_reverse.txt",
-                    "Skip": "color_skip.txt",
-                    "": "color_wild_blank.txt", # Wild
-                    "+2": "color_d2.txt",
-                    "+4": "color_d4.txt" }
+big_card_files = {"0": "zero.txt",
+                    "1": "one.txt",
+                    "2": "two.txt",
+                    "3": "three.txt",
+                    "4": "four.txt",
+                    "5": "five.txt",
+                    "6": "six.txt",
+                    "7": "seven.txt",
+                    "8": "eight.txt",
+                    "9" : "nine.txt",
+                    "Reverse": "reverse.txt",
+                    "Skip": "skip.txt",
+                    "": "wild_blank.txt", # Wild
+                    "+2": "d2.txt",
+                    "+4": "d4.txt" }
 
 def put_in_card(symbol):
     card = [" ____ ",
