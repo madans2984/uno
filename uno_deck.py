@@ -67,10 +67,11 @@ class Deck:
 
         self.cards = []
         if not is_empty:
-            for _ in range(2):
-                for color in ["Red", "Blue", "Green", "Yellow"]:
-                    for symbol in range(0,10):
-                        self.cards.append(Card(color,str(symbol)))
+            for color in ["Red", "Blue", "Green", "Yellow"]:
+                self.cards.append(Card(color,"0"))
+                for _ in range(2):
+                    for num in range(1,10):
+                        self.cards.append(Card(color,str(num)))
                     if include_reverse:
                         self.cards.append(Card(color,"Reverse"))
                     if include_skips:

@@ -24,8 +24,11 @@ class GameState:
         self.draw_pile.shuffle()
 
     def reuse_discard_pile(self):
+
         top_card = self.discard_pile.draw()
         self.discard_pile.shuffle()
+
+        # 
         useable_cards = self.discard_pile.cards
         for card in useable_cards:
             card.strip_chosen_color()

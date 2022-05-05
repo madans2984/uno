@@ -1,8 +1,0 @@
-import pytest
-from uno_deck import *
-
-uno_deck_cases = [
-    
-]
-
-
