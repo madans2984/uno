@@ -1,7 +1,9 @@
 import pytest
-from uno_deck import *
 from testing_helpers import *
-
+from uno_deck import *
+from uno_game import *
+from uno_controllers import *
+from uno_views import *
 
 
 # def test_deck_packing():
