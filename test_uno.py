@@ -1,5 +1,6 @@
 import pytest
 from testing_helpers import *
+from testing_decks import *
 from uno_deck import *
 from uno_game import *
 from uno_controllers import *
@@ -101,3 +102,27 @@ def test_shuffle():
     deck2.shuffle()
 
     assert unpack_deck(deck) != unpack_deck(deck2)
+
+
+draw_cards_cases = [
+    (test_deck1, 1, [['Green', '2']]),
+    (test_deck2, 2, [['Red', '3'], ['Green', '9']]),
+    (test_deck3, 4, [['Green','5'],['Yellow','3'],['Blue','1'],['Yellow','5']])
+]
+
+@pytest.mark.parametrize("test_deck,num_cards,drawn_cards", draw_cards_cases)
+def test_user_draw_card(test_deck, num_cards, drawn_cards):
+    orig_deck_len = test_deck.size()
+    orig_deck_list = unpack_cards(test_deck.cards)
+    game = GameState()
+    user_player = UserPlayerTextController(game, "User", "User")
+    user_player.hand = []
+    game.draw_pile = test_deck
+    user_player.draw(num_cards)
+    if num_cards == None:
+        num_cards = 1
+
+    assert len(user_player.hand) == num_cards
+    assert game.draw_pile.size() == orig_deck_len-num_cards
+    assert unpack_cards(user_player.hand) == drawn_cards
+    assert unpack_deck(game.draw_pile) == orig_deck_list[num_cards:]

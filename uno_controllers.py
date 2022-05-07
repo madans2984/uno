@@ -72,7 +72,7 @@ class Player(ABC):
     def num_cards(self):
         return len(self.hand)
 
-    def draw(self, num_cards):
+    def draw(self, num_cards=1):
         self.hand.extend(self.game.draw_pile.draw(num_cards))
 
     def can_play(self):
