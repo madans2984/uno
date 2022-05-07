@@ -1,6 +1,6 @@
 # UNO
 
-![UNO](website images/uno_banner.jpg)
+![UNO](website_images/uno_banner.jpg)
 
 ### Welcome! Playing UNO with the three CPU players! 
 
