@@ -1,5 +1,7 @@
 ## Game Overview
 
+![game_open](website_images/game_start.png) 
+
 ### Rules
 
 The game has 112 cards (see the breakdown [here](cards.md)). Each player is dealt seven cards with the gameplay goal being the first to get rid of all of your cards. Each player attempts to match the card in the Discard Pile by the symbol, color, or using a Wild card to change the color of the pile. An example would be if the Discard Pile has a "Red 0" then players can play either a red card or a 0. If the player was to put down a Wild card they can choose the current color in play. If a player cannot play any cards, they draw one from the pile and it moves to the next person's turn.

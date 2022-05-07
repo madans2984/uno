@@ -1,4 +1,4 @@
-![cards](website images/card_colors.jpg) 
+![cards](website_images/card_colors.jpg) 
 
 19 Blue cards - 0 to 9   
 19 Green cards - 0 to 9   
