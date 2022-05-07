@@ -3,12 +3,17 @@ from uno_deck import Card, Deck
 
 class GameState:
 
-    def __init__(self):
+    def __init__(self, def_deck=None):
         self.direction = 1
         self.current_action = None
         self.won = False
-        self.draw_pile = Deck()
-        self.draw_pile.shuffle()
+
+        if def_deck == None:
+            self.draw_pile = Deck()
+            self.draw_pile.shuffle()
+        else:
+            self.draw_pile = def_deck
+
         self.discard_pile = Deck(is_empty=True)
 
         # Find the first non-action card, make it the current card (top of

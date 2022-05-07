@@ -116,7 +116,7 @@ def other_players_as_big_card(players_rep):
 # card1 = put_in_card("0")
 # card1 = color_card_rep(card1, "Red")
 # card2 = put_in_card("Reverse")
-# card2 = color_card_rep(card2, "Green")
+# # card2 = color_card_rep(card2, "Green")
 # card3 = put_in_card("Skip")
 # card3 = color_card_rep(card3, "Blue")
 # card4 = put_in_card("+2")

@@ -14,6 +14,7 @@ class UnoView(ABC):
         # if (always_show_card_count == True or
         #     current_player.player_type == "User"):
         #     self.display_other_players()
+        print("============================================================")
         self.display_other_players_and_current_card()
         print(f"It's {current_player.name}'s turn.")
         if ((show_bot_hands == True or current_player.player_type == "User")
