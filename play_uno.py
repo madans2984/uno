@@ -13,17 +13,21 @@ def main():
     tw = textwrap.TextWrapper(width=80,break_long_words=False,replace_whitespace=False)
     print(tw.fill(welcome_message))
     print()
+    
     game = GameState()
+
     user_player = UserPlayerTextController(game, "User", "User")
+    bot0 = BotPlayer(game, "Bot 0", "Bot")
     bot1 = BotPlayer(game, "Bot 1", "Bot")
     bot2 = BotPlayer(game, "Bot 2", "Bot")
     bot3 = BotPlayer(game, "Bot 3", "Bot")
-    view = ColorTextView([user_player, bot1, bot2, bot3], game)
-    director = GameDirector([user_player, bot1, bot2, bot3], game)
+    player_list = [user_player, bot1, bot2, bot3]
+
+    view = ColorTextView(player_list, game)
+    director = GameDirector(player_list, game)
 
     while game.won is False:
-        view.display(director.current_player(), always_show_card_count=True)
-        # view.display_other_players_and_current_card()
+        view.display(director.current_player())
         director.call_the_player()
         director.handle_reverse()
         director.go_to_next_player()

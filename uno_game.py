@@ -20,13 +20,16 @@ class GameState:
         # discard pile), put all cards before the first non-action card at the
         # bottom of the deck, and shuffle.
         cards = self.draw_pile.draw(1)
-        while (cards[-1].symbol == "Reverse" or cards[-1].symbol == "Skip"
-            or cards[-1].symbol == "+2" or cards[-1].symbol == "+4"
-            or cards[-1].symbol == ""):
-            cards.extend(self.draw_pile.draw(1))
+        if (cards[0].symbol == "Reverse" or cards[0].symbol == "Skip"
+            or cards[0].symbol == "+2" or cards[0].symbol == "+4"
+            or cards[0].symbol == ""):
+            while (cards[-1].symbol == "Reverse" or cards[-1].symbol == "Skip"
+                or cards[-1].symbol == "+2" or cards[-1].symbol == "+4"
+                or cards[-1].symbol == ""):
+                cards.extend(self.draw_pile.draw(1))
+            self.draw_pile.add_to_bottom(cards[:-1])
+            self.draw_pile.shuffle()
         self.discard_pile.add_to_top(cards[-1])
-        self.draw_pile.add_to_bottom(cards[:-1])
-        self.draw_pile.shuffle()
 
     def reuse_discard_pile(self):
 

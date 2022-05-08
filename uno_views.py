@@ -8,8 +8,7 @@ class UnoView(ABC):
         self.players = player_list
         self.game = game_state
 
-    def display(self, current_player, always_show_card_count=False,
-        show_bot_hands=False):
+    def display(self, current_player, show_bot_hands=False):
 
         # if (always_show_card_count == True or
         #     current_player.player_type == "User"):

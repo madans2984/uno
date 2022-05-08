@@ -4,11 +4,25 @@ from abc import ABC, abstractmethod
 
 class Player(ABC):
 
-    def __init__(self, game_state, player_name, player_type):
+    def __init__(self, game_state, player_name, player_type,
+        play_card_delay=None):
+
         self.game = game_state
         self.name = player_name
         self.player_type = player_type
         self.hand = self.game.draw_pile.draw(7)
+
+        if self.player_type == "Bot":
+            if play_card_delay == None:
+                self.play_card_delay = 1
+            else:
+                self.play_card_delay = play_card_delay
+        else:
+            if play_card_delay == None:
+                self.play_card_delay = 0
+            else:
+                self.play_card_delay = play_card_delay
+        
 
     def take_turn(self):
         if self.handle_action():
@@ -44,18 +58,17 @@ class Player(ABC):
 
         return False
 
-    def play_card(self, card):
+    def play_card(self, card, choose_manual_input=None):
         if self.check_play(card):
             print(f"{self.name} played {card}.")
             if card.color == "Wild":
-                card = self.choose_color(card)
+                card = self.choose_color(card, choose_manual_input)
 
             if (card.symbol == "Reverse" or
                 card.symbol == "Skip" or
                 card.symbol == "+2" or
                 card.symbol == "+4"):
                 self.game.current_action = card.symbol
-                # print(f"The current action is now {self.game.current_action}.")
 
             self.game.discard_pile.add_to_top(card)
             self.hand.remove(card)
@@ -87,7 +100,7 @@ class Player(ABC):
         """
 
     @abstractmethod
-    def choose_color(self, card):
+    def choose_color(self, card, manual_input=None):
         pass
 
     def __repr__(self):
@@ -112,10 +125,14 @@ class UserPlayerTextController(Player):
 
 
 
-    def choose_color(self, card):
+    def choose_color(self, card, manual_input=None):
         while True:
-            text = input("What color should the new card be?"
+            if manual_input == None:
+                text = input("What color should the new card be?"
                     " (r/g/b/y): ")
+            else:
+                text = manual_input
+
             if text == "r":
                 card.chosen_color = "Red"
                 return card
@@ -139,9 +156,10 @@ class BotPlayer(Player):
     def choose_card(self):
         for card in self.hand:
             if self.play_card(card):
-                time.sleep(1)
+                if self.play_card_delay > 0:
+                    time.sleep(self.play_card_delay)
                 return
 
-    def choose_color(self, card):
+    def choose_color(self, card, manual_input=None):
         card.chosen_color = random.choice(["Red", "Blue", "Green", "Yellow"])
         return card
