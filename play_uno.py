@@ -35,6 +35,8 @@ def main():
         director.call_the_player()
         director.handle_reverse()
         director.go_to_next_player()
+        if game.draw_pile.size() < 10:
+            game.reuse_discard_pile()
 
 
 if __name__ == "__main__":

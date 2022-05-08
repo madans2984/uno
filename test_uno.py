@@ -426,7 +426,7 @@ win_testing_cases = [
 ]
 
 @pytest.mark.parametrize("card,player_index", win_testing_cases)
-def check_win_condition(card, player_index):
+def test_win_condition(card, player_index):
     game = GameState()
     bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
     bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
@@ -439,6 +439,19 @@ def check_win_condition(card, player_index):
     winner.hand = [card]
     game.discard_pile = Deck(def_cards=[Card(winner.hand[0].color, "0")])
 
-    winner.play_card(card,"r")
-
+    winner.take_turn()
     assert game.won == True
+
+
+def test_reuse_discard_pile():
+    game = GameState()
+
+    game.draw_pile = Deck(is_empty=True)
+    game.discard_pile = Deck(def_cards=[pack_cards(normal_test_deck1)])
+    orig_discard_size = game.discard_pile.size()
+    orig_draw_size = game.draw_pile.size()
+
+    game.reuse_discard_pile()
+
+    assert game.draw_pile.size() == orig_draw_size + orig_discard_size - 1
+    assert game.discard_pile.size() == 1
