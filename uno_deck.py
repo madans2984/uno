@@ -23,7 +23,7 @@ class Card:
                 when _color is "Wild"
         """
         self._color = color
-        self.symbol = symbol
+        self._symbol = symbol
         self.chosen_color = ""
 
     def strip_chosen_color(self):
@@ -33,60 +33,78 @@ class Card:
         """
         self.chosen_color = ""
 
+    def is_special(self):
+        if (self.symbol == "Reverse" or self.symbol == "Skip"
+            or self.symbol == "+2" or self.symbol == "+4"
+            or self.symbol == ""):
+            return True
+        return False
+
     @property
     def color(self):
         if self._color == "Wild" and self.chosen_color != "":
             return self.chosen_color
         return self._color
 
+    @property
+    def symbol(self):
+        return self._symbol
+
     def __repr__(self):
-        return f"{self.color} {self.symbol}"
+        if self.symbol == "":
+            return f"{self.color}"
+        else:
+            return f"{self.color} {self.symbol}"
 
 class Deck:
     """
     A representation of an Uno deck.
     """
-    def __init__(self, def_cards=None, include_reverse=True,
-        include_wilds=True, include_skips=True, include_draws=True,
-        is_empty=False):
+    def __init__(self, def_cards=None, is_empty=False):
         """
+        Initialize a deck object.
+
+        Default is a full (unshuffled) deck with 112 cards.
+            - 25 of each color (of Red, Green, Blue, and Yellow).
+              Within each color:
+                - One "0"
+                - Two of each number 1-9
+                - Two of each of "Reverse", "Skip", and "+2"
+            - 12 "Wild" cards
+                - Six "", where the color is chosen by the player
+                - Six "+4", where the color is chosen by the player and the
+                  next player must draw 4 cards and miss their turn
+
         Args:
             def_cards: A list of Card objects, in case the deck should be
-                defined manually (e.g. reusing discards)
-            include_reverse: A boolean denoting if Cards with the symbol/action
-                "Reverse" should be included in the deck
-            include_wilds: A boolean denoting if "Wild" cards should be
-                included in the deck
-            include_skips: A boolean denoting if Cards that make the next
-                player skip their turn ("Skip", "+2", and "+4") should be
-                included
-            include_draws: A boolean denoting if Cards that make the next
-                player draw cards ("+2", "+4") should be included
+                defined manually (e.g. reusing discards, running tests)
             is_empty: A boolean denoting if the Deck should be initialized as
                 an empty list with no Cards in it (e.g. the discard pile)
         """
+
+        # Use only the defined cards if they are given
         if def_cards is not None:
             self.cards = def_cards
             return
 
+        # Initialize the cards attribute as an empty list
         self.cards = []
-        if not is_empty:
-            for color in ["Red", "Blue", "Green", "Yellow"]:
-                self.cards.append(Card(color,"0"))
-                for _ in range(2):
-                    for num in range(1,10):
-                        self.cards.append(Card(color,str(num)))
-                    if include_reverse:
-                        self.cards.append(Card(color,"Reverse"))
-                    if include_skips:
-                        self.cards.append(Card(color,"Skip"))
-                    if include_draws and include_skips:
-                        self.cards.append(Card(color,"+2"))
-            for _ in range(6):
-                if include_wilds:
-                    self.cards.append(Card("Wild",""))
-                if include_draws and include_skips and include_wilds:
-                    self.cards.append(Card("Wild","+4"))
+
+        # If the deck is meant to be empty (e.g. the discard pile during setup)
+        # then stop now
+        if is_empty: return
+
+        # Add the 112 cards in a normal uno deck
+        for color in ["Red", "Blue", "Green", "Yellow"]:
+            self.cards.append(Card(color,"0"))
+            for _ in range(2):
+                for num in range(1,10):
+                    self.cards.append(Card(color,str(num)))
+                self.cards.append(Card(color,"Reverse"))
+                self.cards.append(Card(color,"Skip"))
+                self.cards.append(Card(color,"+2"))
+        self.cards.extend([Card("Wild","")]*6)
+        self.cards.extend([Card("Wild","+4")]*6)
 
     def shuffle(self):
         random.shuffle(self.cards)
@@ -125,3 +143,6 @@ class Deck:
 
     def size(self):
         return len(self.cards)
+
+    def __repr__(self):
+        return f"Deck with cards {self.cards}"
