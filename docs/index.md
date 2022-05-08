@@ -2,7 +2,7 @@
 
 ![UNO](website_images/uno_banner.jpg)
 
-### Welcome! Playing UNO with the three CPU players! 
+### Welcome! Play UNO with the three CPU players! 
 
 ## Explore Our Work!
 
