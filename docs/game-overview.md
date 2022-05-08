@@ -1,6 +1,6 @@
 ## Game Overview
 
-![game_open](website_images/game_start.png) 
+![game_open](website_images/game_welcome.png) 
 
 ### Rules
 
@@ -25,5 +25,9 @@ To start the game, the top card in the Draw Pile is flipped over. If that card i
 ### Game Demo
 
 ### Game Visualizations
+![game_start](website_images/game_start.png) 
+We chose to create our game with a command line interface so we created our own visualizations for each card. 
 
+For the current card in play, we created ASCII images for each card and then used different color codes to determine which color to display. For the cards in the hand, we used unicode characters for each of the centers and created a border around it. Everything we visualized was created using different characters including the game play graphic which shows the current turn order and number of cards in each player's hands. 
 
+When we created our visualizations, we realised that it was difficult to tell when one turn ended and the next began so we added a border which made it easier for players to distinguish individual turns.
