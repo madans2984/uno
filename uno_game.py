@@ -6,7 +6,8 @@ from uno_deck import Deck
 
 class GameState:
     """
-    A representation of the uno game's state.
+    A representation of the uno game's state, with the parts of the game that
+    players can affect.
 
     Attributes:
         draw_pile: A Deck of Cards to be drawn from during the game.
@@ -79,40 +80,85 @@ class GameState:
         return self.draw_pile.draw(num_cards)
 
     def reuse_discard_pile(self):
-
+        """
+        Add the shuffled discard pile cards to the bottom of the draw pile.
+        """
+        # Take off the top/current card in the discard pile
         top_card = self.discard_pile.draw()
+
+        # Shuffle the remaining cards
         self.discard_pile.shuffle()
 
-        # 
+        # Go through each card in the pile and strip the chosen_color attribute
+        # off the Wild cards
         useable_cards = self.discard_pile.cards
         for card in useable_cards:
             card.strip_chosen_color()
+
+        # Add the cleaned cards to the bottom of the draw pile
         self.draw_pile.add_to_bottom(useable_cards)
+        # Replace the original discard pile with just the top/current card
         self.discard_pile = Deck(def_cards=top_card)
     
     def current_card(self):
+        """
+        Return the current/top card in the discard pile, which is the card that
+        future plays need to match.
+        """
         return self.discard_pile.show_top()
 
     def current_color(self):
+        """
+        Return just the color (as a string) of the current/top card.
+        """
         return self.current_card().color
 
     def current_symbol(self):
+        """
+        Return just the Symbol (as a string) of the current/top card.
+        """
         return self.current_card().symbol
 
     def reverse_direction(self):
+        """
+        Reverse the current direction of play (CW/forwards vs. CCW/backwards).
+        """
         self._direction = -self._direction
 
     @property
     def direction(self):
+        """
+        Return the private property _direction.
+
+        Returns:
+            An int that is either -1 or 1, indicating what direction play
+            should proceed.
+        """
         return self._direction
 
     def __repr__(self):
-        return (f"Uno GameState with current_card(): {self.current_card()} \n"
+        """
+        Overwrite the representation of the GameState class to include the
+        current card, direction, and contents of the draw and discard piles.
+        """
+        return (f"Uno GameState with current_card(): {self.current_card()} and"
+            f"direction: {self.direction}\n"
             f"draw_pile ({self.draw_pile.size()} card): {self.draw_pile} \n"
             f"and discard_pile ({self.discard_pile.size()} card): "
             f"{self.discard_pile}")
 
 class GameDirector:
+    """
+    A representation of an uno game director, which tells players when they can
+    play cards.
+
+    Attributes:
+        game: A GameState instance representing the parts of the game that
+            players can interact with.
+        players: A list of Player instances (either users or bots).
+        current_player_index
+
+    """
 
     def __init__(self, player_list, game_state):
         self.game = game_state
@@ -138,8 +184,3 @@ class GameDirector:
             self.current_player_index = 3
         else:
             self.current_player_index = new_index
-
-
-game = GameState()
-
-print(game)
