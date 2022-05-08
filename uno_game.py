@@ -1,5 +1,8 @@
-import random
-from uno_deck import Card, Deck
+"""
+Classes representing the uno game state and the game director.
+"""
+
+from uno_deck import Deck
 
 class GameState:
 

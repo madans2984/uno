@@ -1,6 +1,15 @@
+"""
+Classes representing viewing modes for the uno game.
+"""
 
 from abc import ABC, abstractmethod
-from uno_color_text_helpers import put_in_card, color_card_rep, print_cards, get_big_card, other_players_as_big_card
+from uno_text_view_helpers import (
+    put_in_card,
+    get_big_card,
+    color_card_rep,
+    print_cards,
+    other_players_as_big_card
+)
 
 class UnoView(ABC):
 

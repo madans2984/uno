@@ -1,10 +1,25 @@
+"""
+Test all aspects of the uno game, across all files and classes, using pytest.
+"""
+
 import pytest
-from testing_helpers import *
-from testing_decks import *
-from uno_deck import *
-from uno_game import *
-from uno_controllers import *
-from uno_views import *
+from testing_decks import (
+    normal_test_deck1,
+    normal_test_deck2,
+    normal_test_deck3,
+    normal_test_deck4,
+    one_action_on_top_test_deck,
+    five_actions_on_top_test_deck
+)
+from testing_helpers import (
+    unpack_cards,
+    pack_cards,
+    unpack_deck,
+    pack_deck
+)
+from uno_deck import Card, Deck
+from uno_game import GameState, GameDirector
+from uno_controllers import BotPlayer, UserPlayerTextController
 
 
 def test_deck_packing():
@@ -205,8 +220,8 @@ def test_setup_dealing(test_deck_list,discard,player_hands):
 
 
 discard_pile_setup_cases = [
-    (pack_deck(normal_test_deck4),['Red', '8']),
-    (pack_deck(normal_test_deck5),['Red', '5']),
+    (pack_deck(normal_test_deck1),['Green', '2']),
+    (pack_deck(normal_test_deck2),['Red', '3']),
     (pack_deck(one_action_on_top_test_deck),['Red', '9']),
     (pack_deck(five_actions_on_top_test_deck),['Blue', '5'])
 ]

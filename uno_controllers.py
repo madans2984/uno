@@ -1,3 +1,7 @@
+"""
+Classes representing human and computer uno players.
+"""
+
 import random
 import time
 from abc import ABC, abstractmethod

@@ -1,3 +1,7 @@
+"""
+Helper functions for unit testing.
+"""
+
 from uno_deck import *
 
 def unpack_cards(card_obj_list):

@@ -1,73 +1,6 @@
-from uno_deck import *
-from testing_helpers import *
-
-red_cards = [
-    ['Red', '0'],
-    ['Red', '1'],
-    ['Red', '2'],
-    ['Red', '3'],
-    ['Red', '4'],
-    ['Red', '5'],
-    ['Red', '6'],
-    ['Red', '7'],
-    ['Red', '8'],
-    ['Red', '9'],
-    ['Red', 'Reverse'], 
-    ['Red', 'Skip'], 
-    ['Red', '+2']
-]
-
-green_cards = [
-    ['Green', '0'],
-    ['Green', '1'],
-    ['Green', '2'],
-    ['Green', '3'],
-    ['Green', '4'],
-    ['Green', '5'],
-    ['Green', '6'],
-    ['Green', '7'],
-    ['Green', '8'],
-    ['Green', '9'],
-    ['Green', 'Reverse'], 
-    ['Green', 'Skip'], 
-    ['Green', '+2'],
-]
-
-blue_cards = [
-    ['Blue', '1'],
-    ['Blue', '2'],
-    ['Blue', '3'],
-    ['Blue', '4'],
-    ['Blue', '5'],
-    ['Blue', '6'],
-    ['Blue', '7'],
-    ['Blue', '8'],
-    ['Blue', '9'],
-    ['Blue', 'Reverse'], 
-    ['Blue', 'Skip'], 
-    ['Blue', '+2']
-]
-
-yellow_cards = [
-    ['Yellow', '0'],
-    ['Yellow', '1'],
-    ['Yellow', '2'],
-    ['Yellow', '3'],
-    ['Yellow', '4'],
-    ['Yellow', '5'],
-    ['Yellow', '6'],
-    ['Yellow', '7'],
-    ['Yellow', '8'],
-    ['Yellow', '9'],
-    ['Yellow', 'Reverse'], 
-    ['Yellow', 'Skip'], 
-    ['Yellow', '+2']
-]
-
-wild_cards = [
-    ['Wild', ''],
-    ['Wild', '+4']
-]
+"""
+Sample decks (unpacked, i.e. represented as lists of lists, for easy copying and comparison) that can be used by test_uno.py after being re-packed by testing_helpers.pack_deck().
+"""
 
 normal_test_deck1 = [ ['Green', '2'],
     ['Red', '5'],
@@ -861,6 +794,7 @@ five_actions_on_top_test_deck = [ ['Wild', ''],
     ['Red', '2']]
 
 
+
 unshuffled_deck = [ ['Red', '0'],  # 0
     ['Red', '1'],            # 1
     ['Red', '2'],            # 2
@@ -973,4 +907,73 @@ unshuffled_deck = [ ['Red', '0'],  # 0
     ['Wild', '+4'],          # 109
     ['Wild', ''],            # 110
     ['Wild', '+4'],          # 111
+]
+
+
+red_cards = [
+    ['Red', '0'],
+    ['Red', '1'],
+    ['Red', '2'],
+    ['Red', '3'],
+    ['Red', '4'],
+    ['Red', '5'],
+    ['Red', '6'],
+    ['Red', '7'],
+    ['Red', '8'],
+    ['Red', '9'],
+    ['Red', 'Reverse'], 
+    ['Red', 'Skip'], 
+    ['Red', '+2']
+]
+
+green_cards = [
+    ['Green', '0'],
+    ['Green', '1'],
+    ['Green', '2'],
+    ['Green', '3'],
+    ['Green', '4'],
+    ['Green', '5'],
+    ['Green', '6'],
+    ['Green', '7'],
+    ['Green', '8'],
+    ['Green', '9'],
+    ['Green', 'Reverse'], 
+    ['Green', 'Skip'], 
+    ['Green', '+2'],
+]
+
+blue_cards = [
+    ['Blue', '1'],
+    ['Blue', '2'],
+    ['Blue', '3'],
+    ['Blue', '4'],
+    ['Blue', '5'],
+    ['Blue', '6'],
+    ['Blue', '7'],
+    ['Blue', '8'],
+    ['Blue', '9'],
+    ['Blue', 'Reverse'], 
+    ['Blue', 'Skip'], 
+    ['Blue', '+2']
+]
+
+yellow_cards = [
+    ['Yellow', '0'],
+    ['Yellow', '1'],
+    ['Yellow', '2'],
+    ['Yellow', '3'],
+    ['Yellow', '4'],
+    ['Yellow', '5'],
+    ['Yellow', '6'],
+    ['Yellow', '7'],
+    ['Yellow', '8'],
+    ['Yellow', '9'],
+    ['Yellow', 'Reverse'], 
+    ['Yellow', 'Skip'], 
+    ['Yellow', '+2']
+]
+
+wild_cards = [
+    ['Wild', ''],
+    ['Wild', '+4']
 ]

@@ -1,3 +1,7 @@
+"""
+Main method for playing the uno game.
+"""
+
 from uno_game import GameState, GameDirector
 from uno_controllers import UserPlayerTextController, BotPlayer
 from uno_views import TextView, ColorTextView
