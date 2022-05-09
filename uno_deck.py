@@ -37,7 +37,7 @@ class Card:
         Set the _chosen_color attribute if the card is a "Wild" card.
 
         Args:
-            new_color: A string representing the color the Wild card should 
+            new_color: A string representing the color the Wild card should
                 behave as.
         """
         if self._color == "Wild":
@@ -87,17 +87,16 @@ class Card:
     def __repr__(self):
         """
         Returns a representation of the card as <color> <symbol>
-        (<chosen_color>), with chosen_color only added if applicable, overwriting the default representation of Card.
+        (<chosen_color>), with chosen_color only added if applicable,
+        overwriting the default representation of Card.
         """
         if self._color == "Wild":
             if self.chosen_color != "":
                 if self.symbol == "":
                     return f"{self._color} ({self.chosen_color})"
-                else:
-                    return f"{self._color} {self.symbol} ({self.chosen_color})"
-            else:
-                if self.symbol == "":
-                    return f"{self.color}"
+                return f"{self._color} {self.symbol} ({self.chosen_color})"
+            if self.symbol == "":
+                return f"{self.color}"
         return f"{self.color} {self.symbol}"
 
 
@@ -168,7 +167,8 @@ class Deck:
         Remove an return a list of a specified number of Cards from the Deck.
 
         Args:
-            num_cards: An int specifying how many cards to draw (optional, default is 1 card)
+            num_cards: An int specifying how many cards to draw (optional,
+            default is 1 card)
         Returns:
             A list of Cards (even if only one card is requested).
         """

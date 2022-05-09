@@ -145,9 +145,7 @@ class ColorTextView(UnoView):
             f"{self.game.current_symbol()}.")
         card_rep = get_big_card(self.game.current_symbol())
         card_rep = color_card_rep(card_rep, self.game.current_color())
-        players_rep = self.display_other_players()
-        players_big_card = other_players_as_big_card(players_rep)
-        print_cards([card_rep, players_big_card])
+        print_cards([card_rep])
 
     def display_other_players_and_current_card(self):
         """

@@ -102,7 +102,8 @@ class Player(ABC):
 
     def play_card(self, card, choose_manual_input=None):
         """
-        Have the player play the specified card onto the top of the game's discard pile.
+        Have the player play the specified card onto the top of the game's
+        discard pile.
 
         Args:
             card: A Card instance the player has in their hand and will attempt
@@ -240,8 +241,8 @@ class UserPlayerTextController(Player):
         """
         while True:
             try:
-                index = int(
-                    input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
+                index = int(input(f"Enter the index of the card you want "
+                    f"to play (1-{self.num_cards()}): "))
                 if self.play_card(self.hand[int(index-1)]):
                     return
                 print("Invalid play. Your card must match the color or the"
@@ -274,19 +275,19 @@ class UserPlayerTextController(Player):
             if text == "r":
                 card.set_chosen_color("Red")
                 return card
-            elif text == "g":
+            if text == "g":
                 card.set_chosen_color("Green")
                 return card
-            elif text == "b":
+            if text == "b":
                 card.set_chosen_color("Blue")
                 return card
-            elif text == "y":
+            if text == "y":
                 card.set_chosen_color("Yellow")
                 return card
-            else:
-                print("That is not a valid input. Please enter 'r' for"
-                      " Red, 'g' for Green, 'b' for Blue, or 'y' for"
-                      " Yellow.")
+
+            print("That is not a valid input. Please enter 'r' for"
+                    " Red, 'g' for Green, 'b' for Blue, or 'y' for"
+                    " Yellow.")
 
 
 class BotPlayer(Player):

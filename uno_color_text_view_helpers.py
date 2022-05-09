@@ -82,13 +82,14 @@ def get_big_card(symbol):
     Returns:
         A list of strings representing even rows of ascii art.
     """
+
     # Pull the filepath from the dictionary
     filename = "ascii images/" + big_card_files[symbol]
     # Get each line of the file as a string in a list
     with open(filename, "r") as file:
         card = file.readlines()
     # Strip off the newlines
-    for line_num in range(len(card)):
+    for line_num, _ in enumerate(card):
         card[line_num] = card[line_num].strip("\n")
     return card
 
@@ -108,14 +109,14 @@ def color_card_rep(card_rep, color):
     if color == "Wild":
         row_num = 0
         while True:
-            for color_key in color_reps:
+            for _ , color_key in enumerate(color_reps):
                 card_rep[row_num] = (color_reps[color_key] +
                                      card_rep[row_num] + WHITE)
                 row_num += 1
                 if row_num >= len(card_rep):
                     return card_rep
     else:
-        for row_num in range(len(card_rep)):
+        for row_num, _ in enumerate(card_rep):
             card_rep[row_num] = color_reps[color] + card_rep[row_num] + WHITE
         return card_rep
 

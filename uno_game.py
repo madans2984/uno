@@ -213,7 +213,8 @@ class GameDirector:
 
     def __repr__(self):
         """
-        Overwrite the default representation to return information about the GameDirector's players and game attributes.
+        Overwrite the default representation to return information about the
+        GameDirector's players and game attributes.
         """
         return f"GameDirector with players: {self.players} and " \
             f"game: {self.game}."

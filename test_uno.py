@@ -301,7 +301,7 @@ def test_setup_dealing(test_deck_list, discard, player_hands):
     bot3 = BotPlayer(game, "Bot 3")
     player_list = [user_player, bot1, bot2, bot3]
 
-    for index in range(len(player_list)):
+    for index, _ in enumerate(player_list):
         print(player_hands[index])
         print(unpack_cards(player_list[index].hand))
         assert player_hands[index] == unpack_cards(player_list[index].hand)
