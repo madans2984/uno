@@ -121,12 +121,12 @@ def other_players_as_big_card(players_rep):
 # card3 = color_card_rep(card3, "Blue")
 # card4 = put_in_card("+2")
 # card4 = color_card_rep(card4, "Yellow")
-# card5 = put_in_card("")
-# card5 = color_card_rep(card5, "Wild")
-# card6 = put_in_card("+4")
-# card6 = color_card_rep(card6, "Wild")
+card5 = put_in_card("")
+card5 = color_card_rep(card5, "Wild")
+card6 = put_in_card("+4")
+card6 = color_card_rep(card6, "Wild")
 
-# print_cards([card1,card2,card3,card4,card5,card6])
+print_cards([card5,card6])
 
 # big_card = get_big_card("")
 # big_card = color_card_rep(big_card, "Wild")
