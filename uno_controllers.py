@@ -11,7 +11,8 @@ class Player(ABC):
     An abstract representation of an uno player.
 
     Attributes:
-        player_type: A class attribute representing the type of player (bot or user) as a string ("Bot" or "User").
+        player_type: A class attribute representing the type of player
+        (bot or user) as a string ("Bot" or "User").
         default_delay: A class attribute representing the default number of
             seconds a player should wait after playing their card before ending
             their turn, to make it easier to see what bots play. This is only
@@ -132,8 +133,7 @@ class Player(ABC):
             self.hand.remove(card)
             # Return True to indicate a sucessful play
             return True
-        else: # If the play is not valid, return False
-            return False
+        return False
 
     def check_play(self, card):
         """
@@ -193,7 +193,7 @@ class Player(ABC):
         Returns:
             A float representing the number of seconds this player should wait.
         """
-        if delay == None:
+        if delay is None:
             return self.default_delay
         else:
             return delay
@@ -225,7 +225,8 @@ class Player(ABC):
 
 class UserPlayerTextController(Player):
     """
-    A representation of a user player using a command line interface, inheriting from the Player class.
+    A representation of a user player using a command line interface,
+    inheriting from the Player class.
     """
     player_type = "User"
     default_delay = 0
@@ -262,7 +263,7 @@ class UserPlayerTextController(Player):
             The card with the chosen_color changed to the player's choice.
         """
         while True:
-            if manual_input == None:
+            if manual_input is None:
                 text = input("What color should the new card be?"
                     " (r/g/b/y): ")
             else:
