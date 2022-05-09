@@ -3,7 +3,7 @@
 This is a repository housing Shree and Jules's, final SoftDes project, a virtual version of **UNO**.
 
 ## Game Overview
-The goal of the game is to get rid of your cards first and it's played against three CPU players. We have most of the same rules as UNO with a few notable differences. The two key difference are special cards cannot be stacked to create a cumulative effect and there is no rule about calling out UNO when you have one card left. See full rules [here](https://olincollege.github.io/uno/game-overview.html)
+The goal of the game is to get rid of your cards first and it's played against three CPU players. We have most of the same rules as UNO with a few notable differences. The two key difference are special cards cannot be stacked to create a cumulative effect and there is no rule about calling out UNO when you have one card left. See full rules [here](https://olincollege.github.io/uno/game-overview.html).
 
 ## Installation and setup
 To run the game, the only thing required is a python installation. The game itself operates with the command line interface so no additional packages are required for visualizations.
