@@ -18,6 +18,6 @@ I wanna play! How do I do that?
 #### [About Us](about.md)
 Who are we?
 
-#### [Bibliography](bibliography.md)
-Sources we referenced
+#### [Video Presentation](video.md)
+Video presentation
 
