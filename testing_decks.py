@@ -1,5 +1,7 @@
 """
-Sample decks (unpacked, i.e. represented as lists of lists, for easy copying and comparison) that can be used by test_uno.py after being re-packed by testing_helpers.pack_deck().
+Sample decks (unpacked, i.e. represented as lists of lists, for easy copying
+and comparison) that can be used by test_uno.py after being re-packed by
+testing_helpers.pack_deck().
 """
 
 normal_test_deck1 = [ ['Green', '2'],
@@ -921,8 +923,8 @@ red_cards = [
     ['Red', '7'],
     ['Red', '8'],
     ['Red', '9'],
-    ['Red', 'Reverse'], 
-    ['Red', 'Skip'], 
+    ['Red', 'Reverse'],
+    ['Red', 'Skip'],
     ['Red', '+2']
 ]
 
@@ -937,8 +939,8 @@ green_cards = [
     ['Green', '7'],
     ['Green', '8'],
     ['Green', '9'],
-    ['Green', 'Reverse'], 
-    ['Green', 'Skip'], 
+    ['Green', 'Reverse'],
+    ['Green', 'Skip'],
     ['Green', '+2'],
 ]
 
@@ -952,8 +954,8 @@ blue_cards = [
     ['Blue', '7'],
     ['Blue', '8'],
     ['Blue', '9'],
-    ['Blue', 'Reverse'], 
-    ['Blue', 'Skip'], 
+    ['Blue', 'Reverse'],
+    ['Blue', 'Skip'],
     ['Blue', '+2']
 ]
 
@@ -968,8 +970,8 @@ yellow_cards = [
     ['Yellow', '7'],
     ['Yellow', '8'],
     ['Yellow', '9'],
-    ['Yellow', 'Reverse'], 
-    ['Yellow', 'Skip'], 
+    ['Yellow', 'Reverse'],
+    ['Yellow', 'Skip'],
     ['Yellow', '+2']
 ]
 

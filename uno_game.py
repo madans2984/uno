@@ -38,7 +38,7 @@ class GameState:
         self.won = False
 
         # Set up the draw pile
-        if def_deck == None:
+        if def_deck is None:
             self.draw_pile = Deck()
             self.draw_pile.shuffle()
         else:
@@ -60,7 +60,7 @@ class GameState:
     def play_card(self, card):
         """
         Play a Card onto the top of the discard_pile Deck.
-        
+
         Args:
             card: A Card instance to be added to the top of the discard pile.
         """
@@ -99,7 +99,7 @@ class GameState:
         self.draw_pile.add_to_bottom(useable_cards)
         # Replace the original discard pile with just the top/current card
         self.discard_pile = Deck(def_cards=top_card)
-    
+
     def current_card(self):
         """
         Return the current/top card in the discard pile, which is the card that
@@ -198,7 +198,8 @@ class GameDirector:
 
     def go_to_next_player(self):
         """
-        Change current_player_index to the correct next int using the game's direction and loop at the bounds of the list.
+        Change current_player_index to the correct next int using the game's
+        direction and loop at the bounds of the list.
         """
         new_index = self.current_player_index + self.game.direction
         if new_index > len(self.players)-1:

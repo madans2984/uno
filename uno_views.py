@@ -14,7 +14,7 @@ from uno_text_view_helpers import (
 class UnoView(ABC):
     """
     An abstract class for viewing the uno game.
-    
+
     Attributes:
         players: A list of Player instances (either users or bots).
         game: A GameState instance representing the parts of the game that
@@ -45,22 +45,23 @@ class UnoView(ABC):
         print("============================================================")
         self.display_other_players_and_current_card()
         print(f"It's {current_player.name}'s turn.")
-        if ((show_bot_hands == True or current_player.player_type == "User")
-            and self.game.current_action == None):
+        if ((show_bot_hands is True or current_player.player_type == "User")
+            and self.game.current_action is None):
             self.display_hand(current_player)
 
     @abstractmethod
     def display_other_players_and_current_card(self):
         """
-        An abstract method for showing the other players and their card count, as well as the current top card.
+        An abstract method for showing the other players and their card count,
+        as well as the current top card.
         """
-    
+
     @abstractmethod
     def display_other_players(self):
         """
         An abstract method for showing the other players and their card count.
         """
-    
+
     @abstractmethod
     def display_current_card(self):
         """
@@ -76,9 +77,10 @@ class UnoView(ABC):
 
 class TextView(UnoView):
     """
-    An uno game viewing class (that inherits from UnoView) for displaying game information as plain text on the command line.
+    An uno game viewing class (that inherits from UnoView) for displaying game
+    information as plain text on the command line.
     """
-    
+
     def display_other_players(self):
         """
         Print the names of the other players and the number of cards they have.
@@ -109,7 +111,8 @@ class TextView(UnoView):
 
 class ColorTextView(UnoView):
     """
-    An uno game viewing class (that inherits from UnoView) for displaying game information as plain text and colorful ascii art in the terminal.
+    An uno game viewing class (that inherits from UnoView) for displaying game
+    information as plain text and colorful ascii art in the terminal.
     """
 
     def display_other_players(self):
@@ -187,10 +190,10 @@ class ColorTextView(UnoView):
             A list of strings.
         """
         # Define the unicode arrows and diamond width
-        ne = "\u2197"
-        se = "\u2198"
-        sw = "\u2199"
-        nw = "\u2196"
+        ne_arrow = "\u2197"
+        se_arrow = "\u2198"
+        sw_arrow = "\u2199"
+        nw_arrow = "\u2196"
         half_width = 8
 
         # Create a list of string representations for the number of cards each
@@ -215,11 +218,11 @@ class ColorTextView(UnoView):
         # Create the arrow rows to point clockwise for forward, and
         # counterclockwise for backwards
         if self.game.direction == 1:
-            arrows = [ne.center(half_width) + " " + se.center(half_width),
-                      nw.center(half_width) + " " + sw.center(half_width)]
+            arrows = [ne_arrow.center(half_width) + " " + se_arrow.center(half_width),
+                      nw_arrow.center(half_width) + " " + sw_arrow.center(half_width)]
         else:
-            arrows = [sw.center(half_width) + " " + nw.center(half_width),
-                      se.center(half_width) + " " + ne.center(half_width)]
+            arrows = [sw_arrow.center(half_width) + " " + nw_arrow.center(half_width),
+                      se_arrow.center(half_width) + " " + ne_arrow.center(half_width)]
 
         # Assemble all of the blocks
         full = [top[0],

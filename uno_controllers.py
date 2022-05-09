@@ -195,8 +195,7 @@ class Player(ABC):
         """
         if delay is None:
             return self.default_delay
-        else:
-            return delay
+        return delay
 
     @abstractmethod
     def choose_card(self):
@@ -241,10 +240,9 @@ class UserPlayerTextController(Player):
                 index = int(input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
                 if self.play_card(self.hand[int(index-1)]):
                     return
-                else:
-                    print("Invalid play. Your card must match the color or the"
-                        " symbol of the current card, \n"
-                        "or be a Wild card. Please try again.")
+                print("Invalid play. Your card must match the color or the"
+                    " symbol of the current card, \n"
+                    "or be a Wild card. Please try again.")
             except (IndexError, ValueError):
                 print(f"Invalid input. Please enter an integer between 1 and"
                     f" {self.num_cards()}.")
