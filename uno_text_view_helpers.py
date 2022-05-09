@@ -2,16 +2,14 @@
 Varibles holding string list representations of cards.
 """
 
-WHITE = '\033[0m'
-RED = '\033[91m'
-GREEN = '\033[92m'
-BLUE = '\033[94m'
-YELLOW = '\033[93m'
-CYAN = '\033[96m'
-PURPLE = '\033[95m'
-GRAY = '\033[90m'
+# Define useful colors
+WHITE = "\033[0m"
+RED = "\033[91m"
+GREEN = "\033[92m"
+BLUE = "\033[94m"
+YELLOW = "\033[93m"
 
-
+# Define the symbol representations for cards in the hand
 symbol_reps = { "0": "０",
                 "1": "１",
                 "2": "２",
@@ -28,6 +26,7 @@ symbol_reps = { "0": "０",
                 "+2": "+2",
                 "+4": (WHITE+"+4"+BLUE) }
 
+# Define the colors used for each card color
 color_reps = {
     "Red": RED,
     "Green": GREEN,
@@ -35,6 +34,8 @@ color_reps = {
     "Yellow": YELLOW,
 }
 
+# Define the locations of the ascii art for the big cards / representations of
+# the current card
 big_card_files = {"0": "zero.txt",
                     "1": "one.txt",
                     "2": "two.txt",
@@ -52,6 +53,15 @@ big_card_files = {"0": "zero.txt",
                     "+4": "d4.txt" }
 
 def put_in_card(symbol):
+    """
+    Return the small/hand card representation of the given symbol.
+
+    Args:
+        symbol: A string representing the a symbol on an uno card (as it
+            appears in the Card object).
+    Returns:
+        A list of strings representing even rows of ascii art.
+    """
     card = [" ____ ",
             "|    |",
             "|    |",
@@ -61,14 +71,36 @@ def put_in_card(symbol):
     return card
 
 def get_big_card(symbol):
+    """
+    Return the big/current card representation of the given symbol.
+
+    Args:
+        symbol: A string representing the a symbol on an uno card (as it
+            appears in the Card object).
+    Returns:
+        A list of strings representing even rows of ascii art.
+    """
+    # Pull the filepath from the dictionary
     filename = "ascii images/" + big_card_files[symbol]
+    # Get each line of the file as a string in a list
     with open(filename, "r") as file:
         card = file.readlines()
+    # Strip off the newlines
     for line_num in range(len(card)):
         card[line_num] = card[line_num].strip("\n")
     return card
 
 def color_card_rep(card_rep, color):
+    """
+    Color the card representation by adding color escape codes to the beginning and end of each string in the list.
+
+    Args:
+        color: A string representing the the color of an uno card (as it
+            appears in the Card object).
+    Returns:
+        A list of strings representing even rows of ascii art with color escape
+        codes.
+    """
     if color == "Wild":
         row_num = 0
         while True:
@@ -84,6 +116,14 @@ def color_card_rep(card_rep, color):
         return card_rep
 
 def print_cards(card_list):
+    """
+    Print a list of card representations side by side to the terminal.
+
+    Args:
+        card_list: A list of lists of strings, where each sublist represents a
+            card. All of the sublists must be the same length and all of the
+            strings in a sublist are the same length.
+    """
     print_rows = []
     num_rows = len(card_list[0])
     for i in range(num_rows):
@@ -96,6 +136,11 @@ def print_cards(card_list):
         print(row)
 
 def other_players_as_big_card(players_rep):
+    """
+    Add more blank lines to the top and bottom of a list of strings in order to make it the same size as a big card.
+
+    This is used for displaying the current card and player diamond next to each other.
+    """
     big_card_lines = 11
     big_card_players_rep = []
     blank_line = " " * 21
@@ -108,27 +153,5 @@ def other_players_as_big_card(players_rep):
 
     while len(big_card_players_rep) < big_card_lines:
         big_card_players_rep.append(blank_line)
-    
+
     return big_card_players_rep
-
-
-
-# card1 = put_in_card("0")
-# card1 = color_card_rep(card1, "Red")
-# card2 = put_in_card("Reverse")
-# # card2 = color_card_rep(card2, "Green")
-# card3 = put_in_card("Skip")
-# card3 = color_card_rep(card3, "Blue")
-# card4 = put_in_card("+2")
-# card4 = color_card_rep(card4, "Yellow")
-# card5 = put_in_card("")
-# card5 = color_card_rep(card5, "Wild")
-# card6 = put_in_card("+4")
-# card6 = color_card_rep(card6, "Wild")
-
-# print_cards([card1,card2,card3,card4,card5,card6])
-
-# big_card = get_big_card("")
-# big_card = color_card_rep(big_card, "Wild")
-# # print(big_card)
-# print_cards([big_card])
