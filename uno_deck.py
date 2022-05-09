@@ -7,6 +7,12 @@ import random
 class Card:
     """
     A representation of an Uno card.
+
+    Attributes:
+        _color: A string representing the color of the card.
+        _symbol: A string representing the symbol or action on the card.
+        _chosen_color: A string representing the color chosen by the player
+                when _color is "Wild".
     """
     def __init__(self, color, symbol):
         """
@@ -17,16 +23,21 @@ class Card:
             "Reverse", "Skip", "+2", and "+4"
 
         Args:
-            _color: A string representing the color.
-            symbol: A string represening the number or action on the card
-            chosen_color: A string representing the color chosen by the player
-                when _color is "Wild"
+            color: A string representing the color.
+            symbol: A string represening the number or action on the card.
         """
         self._color = color
         self._symbol = symbol
         self._chosen_color = ""
 
     def set_chosen_color(self, new_color):
+        """
+        Set the _chosen_color attribute if the card is a "Wild" card.
+
+        Args:
+            new_color: A string representing the color the Wild card should 
+                behave as.
+        """
         if self._color == "Wild":
             self._chosen_color = new_color
 
