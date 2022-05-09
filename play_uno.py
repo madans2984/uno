@@ -7,17 +7,19 @@ from uno_game import GameState, GameDirector
 from uno_controllers import UserPlayerTextController, BotPlayer
 from uno_views import ColorTextView
 
-WELCOME_MESSAGE = (
-    "\nWelcome to UNO! In this game, each player is dealt seven cards with the gameplay goal being the first to get rid of all of your cards. Each player attempts to match the card in the Discard Pile by the symbol, color, or using a Wild card to change the color of the pile. An example would be if the Discard Pile has a 'Red 0' then players can play either a red card or a 0. If the player was to put down a Wild card they can choose the current color in play. If a player cannot play any cards, they draw one from the pile and it moves to the next person's turn. \n \n"
-    "We made two main modifications to our game rules compared to how UNO is typically played. First, we don't have a rule where you need to call UNO once you have your last card. Additionally we decided that special cards cannot be stacked meaning that there would be no cumulative effect for them. \n \n"
-    "The big card in the middle of the screen is the current top card and the smaller cards below it are the cards you are able to play. Next to the large card is a graphic which will tell you the current order for the gameplay. To play a card, enter the index of the card (listed below it). \n"
-    )
 
 def main():
+    """
+    Have the user play an UNO game against 3 computer opponents.
+    """
     # Print the welcome message
-    text = textwrap.TextWrapper(width=80,break_long_words=False,
-        replace_whitespace=False)
-    print(text.fill(WELCOME_MESSAGE))
+    with open("welcome_message.txt", "r") as file:
+        welcome_message = file.readlines()
+    text = textwrap.TextWrapper(width=80, break_long_words=False,
+                                replace_whitespace=False)
+    print()
+    for line in welcome_message:
+        print(text.fill(line))
     print()
 
     # Initialize the GameState (contains draw pile, discard pile, and direction)
