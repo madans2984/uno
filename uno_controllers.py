@@ -269,16 +269,16 @@ class UserPlayerTextController(Player):
                 text = manual_input
 
             if text == "r":
-                card.choose_color("Red")
+                card.set_chosen_color("Red")
                 return card
             elif text == "g":
-                card.choose_color("Green")
+                card.set_chosen_color("Green")
                 return card
             elif text == "b":
-                card.choose_color("Blue")
+                card.set_chosen_color("Blue")
                 return card
             elif text == "y":
-                card.choose_color("Yellow")
+                card.set_chosen_color("Yellow")
                 return card
             else:
                 print("That is not a valid input. Please enter 'r' for"
@@ -316,5 +316,6 @@ class BotPlayer(Player):
         Returns:
             The card with the chosen_color changed to the player's choice.
         """
-        card.choose_color(random.choice(["Red", "Blue", "Green", "Yellow"]))
+        card.set_chosen_color(random.choice(["Red", "Blue", "Green", "Yellow"]))
+        print(f"{self.name} chose {card.color}.")
         return card

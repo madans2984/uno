@@ -26,12 +26,13 @@ def main():
     bot2 = BotPlayer(game, "Bot 2")
     bot3 = BotPlayer(game, "Bot 3")
     player_list = [user_player, bot1, bot2, bot3]
+    player_list = [bot0, bot1, bot2, bot3]
 
     view = ColorTextView(player_list, game)
     director = GameDirector(player_list, game)
 
     while game.won is False:
-        view.display(director.current_player())
+        view.display(director.current_player(),show_bot_hands=True)
         director.call_the_player()
         director.handle_reverse()
         director.go_to_next_player()

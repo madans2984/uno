@@ -60,7 +60,7 @@ def test_uno_card_chosen_color(color, symbol, chosen_color):
     assert card.color == color
     assert card.symbol == symbol
 
-    card.choose_color(chosen_color)
+    card.set_chosen_color(chosen_color)
 
     assert card.color == chosen_color
     assert card.symbol == symbol

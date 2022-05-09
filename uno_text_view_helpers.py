@@ -73,11 +73,11 @@ def color_card_rep(card_rep, color):
         row_num = 0
         while True:
             for color_key in color_reps:
-                card_rep[row_num] = color_reps[color_key] + card_rep[row_num] +WHITE
+                card_rep[row_num] = (color_reps[color_key] + 
+                                        card_rep[row_num] + WHITE)
                 row_num += 1
                 if (row_num >= len(card_rep)):
                     return card_rep
-        return card_rep
     else:
         for row_num in range(len(card_rep)):
             card_rep[row_num] = color_reps[color] + card_rep[row_num] + WHITE

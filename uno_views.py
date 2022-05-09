@@ -60,7 +60,8 @@ class TextView(UnoView):
         print(player.hand)
 
     def display_other_players_and_current_card(self):
-        pass
+        self.display_other_players()
+        self.display_current_card()
 
 class ColorTextView(UnoView):
 
@@ -88,13 +89,15 @@ class ColorTextView(UnoView):
     def display_hand(self, player):
         print(f"{player.name}'s hand:")
         card_reps = []
-        index_str = ""
-        for i in range(1,len(player.hand)+1):
-            index_str += str(i).center(6)
         for card in player.hand:
             card_rep = put_in_card(card.symbol)
             card_rep = color_card_rep(card_rep, card.color)
             card_reps.append(card_rep)
+
+        index_str = ""
+        for i in range(1,len(player.hand)+1):
+            index_str += str(i).center(6)
+
         print_cards(card_reps)
         print(index_str)
 
@@ -103,7 +106,6 @@ class ColorTextView(UnoView):
         se = "\u2198"
         sw = "\u2199"
         nw = "\u2196"
-        side_name_width = 7
         half_width = 8
         card_strings = []
         for player in self.players:

@@ -26,11 +26,9 @@ class Card:
         self._symbol = symbol
         self._chosen_color = ""
 
-    def choose_color(self, new_color):
-        if self.color == "Wild":
+    def set_chosen_color(self, new_color):
+        if self._color == "Wild":
             self._chosen_color = new_color
-            return True
-        return False
 
     def strip_chosen_color(self):
         """
@@ -119,8 +117,9 @@ class Deck:
                 self.cards.append(Card(color,"Reverse"))
                 self.cards.append(Card(color,"Skip"))
                 self.cards.append(Card(color,"+2"))
-        self.cards.extend([Card("Wild","")]*6)
-        self.cards.extend([Card("Wild","+4")]*6)
+        for _ in range(6):
+            self.cards.append(Card("Wild",""))
+            self.cards.append(Card("Wild","+4"))
 
     def shuffle(self):
         random.shuffle(self.cards)
