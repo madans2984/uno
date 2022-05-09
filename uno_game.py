@@ -153,9 +153,9 @@ class GameDirector:
     play cards.
 
     Attributes:
+        players: A list of Player instances (either users or bots).
         game: A GameState instance representing the parts of the game that
             players can interact with.
-        players: A list of Player instances (either users or bots).
         current_player_index: The index in the players list (0-3) of the player
             being/to-be called.
     """
@@ -168,8 +168,8 @@ class GameDirector:
             players_list: A list of Player instances (either users or bots).
             game_state: A GameState instance for the new game.
         """
-        self.game = game_state
         self.players = player_list
+        self.game = game_state
         self.current_player_index = 0
 
     def current_player(self):
