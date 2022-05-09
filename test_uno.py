@@ -154,12 +154,12 @@ def test_shuffle():
 
 
 draw_cards_cases = [
-    (normal_test_deck1, 1, [['Green', '2']]),
-    (normal_test_deck2, 2, [['Red', '3'], ['Green', '9']]),
-    (normal_test_deck3, 4, [['Green','5'], ['Yellow','3'],
-        ['Blue','1'], ['Yellow','5']]),
-    (five_actions_on_top_test_deck, 4,[['Wild', ''], ['Red', 'Skip'],
-        ['Blue', 'Reverse'], ['Wild', '+4']])
+    (normal_test_deck1, 1, [["Green", "2"]]),
+    (normal_test_deck2, 2, [["Red", "3"], ["Green", "9"]]),
+    (normal_test_deck3, 4, [["Green","5"], ["Yellow","3"],
+        ["Blue","1"], ["Yellow","5"]]),
+    (five_actions_on_top_test_deck, 4,[["Wild", ""], ["Red", "Skip"],
+        ["Blue", "Reverse"], ["Wild", "+4"]])
 ]
 
 @pytest.mark.parametrize("test_deck_list,num_cards,drawn_cards",
@@ -235,34 +235,34 @@ def test_bot_draw_cards(test_deck_list, num_cards, drawn_cards):
     assert unpack_deck(game.draw_pile) == test_deck_list[num_cards:]
 
 setup_dealing_cases = [
-    (normal_test_deck4,['Red', '8'],[ [['Green', '2'],
-                                ['Green', '7'],
-                                ['Red', '7'],
-                                ['Wild', ''],
-                                ['Blue', 'Skip'],
-                                ['Red', 'Skip'],
-                                ['Red', '0']],
-                               [['Green', '9'],
-                                ['Wild', ''],
-                                ['Green', '6'],
-                                ['Wild', '+4'],
-                                ['Blue', '+2'],
-                                ['Yellow', '8'],
-                                ['Yellow', '3']],
-                               [['Blue', '8'],
-                                ['Blue', '+2'],
-                                ['Green', '7'],
-                                ['Wild', '+4'],
-                                ['Red', '6'],
-                                ['Red', '2'],
-                                ['Yellow', '5']],
-                               [['Red', '5'],
-                                ['Green', '6'],
-                                ['Green', 'Reverse'],
-                                ['Green', '4'],
-                                ['Yellow', '6'],
-                                ['Green', '5'],
-                                ['Green', '0']] ])
+    (normal_test_deck4,["Red", "8"],[ [["Green", "2"],
+                                ["Green", "7"],
+                                ["Red", "7"],
+                                ["Wild", ""],
+                                ["Blue", "Skip"],
+                                ["Red", "Skip"],
+                                ["Red", "0"]],
+                               [["Green", "9"],
+                                ["Wild", ""],
+                                ["Green", "6"],
+                                ["Wild", "+4"],
+                                ["Blue", "+2"],
+                                ["Yellow", "8"],
+                                ["Yellow", "3"]],
+                               [["Blue", "8"],
+                                ["Blue", "+2"],
+                                ["Green", "7"],
+                                ["Wild", "+4"],
+                                ["Red", "6"],
+                                ["Red", "2"],
+                                ["Yellow", "5"]],
+                               [["Red", "5"],
+                                ["Green", "6"],
+                                ["Green", "Reverse"],
+                                ["Green", "4"],
+                                ["Yellow", "6"],
+                                ["Green", "5"],
+                                ["Green", "0"]] ])
 ]
 
 @pytest.mark.parametrize("test_deck_list,discard,player_hands", setup_dealing_cases)
@@ -300,10 +300,10 @@ def test_setup_dealing(test_deck_list,discard,player_hands):
 
 
 discard_pile_setup_cases = [
-    (pack_deck(normal_test_deck1),['Green', '2']),
-    (pack_deck(normal_test_deck2),['Red', '3']),
-    (pack_deck(one_action_on_top_test_deck),['Red', '9']),
-    (pack_deck(five_actions_on_top_test_deck),['Blue', '5'])
+    (pack_deck(normal_test_deck1),["Green", "2"]),
+    (pack_deck(normal_test_deck2),["Red", "3"]),
+    (pack_deck(one_action_on_top_test_deck),["Red", "9"]),
+    (pack_deck(five_actions_on_top_test_deck),["Blue", "5"])
 ]
 
 @pytest.mark.parametrize("test_deck,discard", discard_pile_setup_cases)
