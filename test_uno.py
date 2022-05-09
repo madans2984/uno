@@ -166,7 +166,8 @@ draw_cards_cases = [
     draw_cards_cases)
 def test_user_draw_cards(test_deck_list, num_cards, drawn_cards):
     """
-    Test that a user player drawing cards from a deck removes the correct cards from the deck and adds the correct cards to the user player's hand.
+    Test that a user player drawing cards from a deck removes the correct cards
+    from the deck and adds the correct cards to the user player's hand.
 
     Args:
         test_deck_list: A list of cards represented by lists of strings to be
@@ -202,7 +203,8 @@ def test_user_draw_cards(test_deck_list, num_cards, drawn_cards):
     draw_cards_cases)
 def test_bot_draw_cards(test_deck_list, num_cards, drawn_cards):
     """
-    Test that a bot player drawing cards from a deck removes the correct cards from the deck and adds the correct cards to the bot player's hand.
+    Test that a bot player drawing cards from a deck removes the correct cards
+    from the deck and adds the correct cards to the bot player's hand.
 
     Args:
         test_deck_list: A list of cards represented by lists of strings to be
@@ -343,7 +345,8 @@ play_card_cases = [
 @pytest.mark.parametrize("current_card,played_card,result", play_card_cases)
 def test_play_card(current_card,played_card,result):
     """
-    Check that the player.play_card() function properly allows and refuses cards that are and aren't allowed to be played during that turn.
+    Check that the player.play_card() function properly allows and refuses
+    cards that are and aren't allowed to be played during that turn.
 
     Args:
         current_card: A Card instance representing the card on the top of the
@@ -397,7 +400,7 @@ def test_playing_draw2():
     # Check that it is now the next player's turn, (not the player that was
     # skipped by the +2)
     assert director.current_player() == bot1
-    
+
 
 def test_playing_draw4():
     """
@@ -580,7 +583,7 @@ def test_win_condition(card):
     game.discard_pile = Deck(def_cards=[Card(player.hand[0].color, "0")])
 
     player.take_turn()
-    assert game.won == True
+    assert game.won is True
 
 
 def test_reuse_discard_pile():
