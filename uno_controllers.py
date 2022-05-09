@@ -208,7 +208,8 @@ class Player(ABC):
     @abstractmethod
     def choose_color(self, card, manual_input=None):
         """
-        An abstract method for the player to choose the color of their Wild when they play one.
+        An abstract method for the player to choose the color of their Wild
+        card when they play one.
 
         Args:
             card: A "Wild" colored Card instance whose color should be chosen.
@@ -224,11 +225,16 @@ class Player(ABC):
 
 class UserPlayerTextController(Player):
     """
+    A representation of a user player using a command line interface, inheriting from the Player class.
     """
     player_type = "User"
     default_delay = 0
 
     def choose_card(self):
+        """
+        Get command line input from the user to let them choose the card they
+        will play during a turn, and play that card if it is valid.
+        """
         while True:
             try:
                 index = int(input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
@@ -243,6 +249,18 @@ class UserPlayerTextController(Player):
                     f" {self.num_cards()}.")
 
     def choose_color(self, card, manual_input=None):
+        """
+        Get command line input from the user to let them choose the color of
+        their Wild card.
+
+        Args:
+            card: A "Wild" colored Card instance whose color should be chosen.
+            manual_input: (optional, for testing) A string ("r", "g",
+                "b", or "y") representing what color the player wants to
+                declare the wild card to be.
+        Returns:
+            The card with the chosen_color changed to the player's choice.
+        """
         while True:
             if manual_input == None:
                 text = input("What color should the new card be?"
@@ -270,11 +288,16 @@ class UserPlayerTextController(Player):
 
 class BotPlayer(Player):
     """
+    A representation of a bot player, inheriting from the Player class.
     """
     player_type = "Bot"
     default_delay = 1
 
     def choose_card(self):
+        """
+        Have the bot player play the first card in their hand that is a valid
+        play.
+        """
         for card in self.hand:
             if self.play_card(card):
                 if self.play_card_delay > 0:
@@ -282,5 +305,16 @@ class BotPlayer(Player):
                 return
 
     def choose_color(self, card, manual_input=None):
+        """
+        Get command line input from the user to let them choose the color of
+        their Wild card.
+
+        Args:
+            card: A "Wild" colored Card instance whose color should be chosen.
+            manual_input: This is for testing the UserPlayerTextController
+                interface, and is not used here.
+        Returns:
+            The card with the chosen_color changed to the player's choice.
+        """
         card.choose_color(random.choice(["Red", "Blue", "Green", "Yellow"]))
         return card
