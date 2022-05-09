@@ -13,13 +13,12 @@ While not required to run the game, the test framework uses pytest, which can be
 ## File Structure
 The file structure consists of the following `.py` files:
 * `play_uno.py`: Run this to play the game!
-* `print_cards.py`: 
-* `uno_controllers.py`: 
-* `uno_deck.py`: 
-* `uno_game.py`: 
-* `uno_text_vis_vars.py`:
-* `uno_views.py`:
+* `uno_controllers.py`: Varibles holding string list representations of cards.
+* `uno_deck.py`: Classes representing uno cards and a deck of uno cards.
+* `uno_game.py`: Classes representing the uno game state and the game director.
+* `uno_views.py`: Classes representing viewing modes for the uno game.
+* `uno_text_view_helpers.py`: Varibles holding string list representations of cards.
 
 ### Static files
 
-## Attributions
+The /ascii images folder has the files for the card graphics. This path is hard-coded so those specific files must be in that folder. If you're downloading straight from the repo, you shouldn't run into any issues.
