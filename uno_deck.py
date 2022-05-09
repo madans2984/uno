@@ -51,12 +51,12 @@ class Card:
         return self._color
 
     @property
-    def chosen_color(self):
-        return self._chosen_color
-
-    @property
     def symbol(self):
         return self._symbol
+
+    @property
+    def chosen_color(self):
+        return self._chosen_color
 
     def __repr__(self):
         if self._color == "Wild":
