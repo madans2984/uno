@@ -60,7 +60,7 @@ def test_uno_card_chosen_color(color, symbol, chosen_color):
     assert card.color == color
     assert card.symbol == symbol
 
-    card.chosen_color = chosen_color
+    card.choose_color(chosen_color)
 
     assert card.color == chosen_color
     assert card.symbol == symbol
@@ -155,7 +155,7 @@ def test_bot_draw_cards(test_deck_list, num_cards, drawn_cards):
     orig_deck_len = test_deck.size()
     orig_deck_list = unpack_cards(test_deck.cards)
     game = GameState()
-    bot_player = UserPlayerTextController(game, "Bot", "Bot")
+    bot_player = BotPlayer(game, "Bot")
     bot_player.hand = []
     game.draw_pile = test_deck
     bot_player.draw(num_cards)
@@ -206,9 +206,9 @@ def test_setup_dealing(test_deck_list,discard,player_hands):
     assert unpack_cards([game.discard_pile.show_top()]) == [discard]
 
     user_player = UserPlayerTextController(game, "User", "User")
-    bot1 = BotPlayer(game, "Bot 1", "Bot")
-    bot2 = BotPlayer(game, "Bot 2", "Bot")
-    bot3 = BotPlayer(game, "Bot 3", "Bot")
+    bot1 = BotPlayer(game, "Bot 1")
+    bot2 = BotPlayer(game, "Bot 2")
+    bot3 = BotPlayer(game, "Bot 3")
     player_list = [user_player, bot1, bot2, bot3]
 
     for index in range(len(player_list)):
@@ -255,7 +255,7 @@ play_card_cases = [
 def test_play_card(current_card,played_card,result):
     game = GameState()
     game.discard_pile = Deck(def_cards=[current_card])
-    player = BotPlayer(game, "Bot", "Bot")
+    player = BotPlayer(game, "Bot")
     player.hand = [played_card]
     assert player.play_card(played_card) == result
 
@@ -263,10 +263,10 @@ def test_playing_draw2():
     card = Card("Red", "+2")
     game = GameState()
     game.discard_pile = Deck(def_cards=[Card(card.color, "0")])
-    bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot0 = BotPlayer(game, "Bot 0", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [bot0, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 
@@ -289,10 +289,10 @@ def test_playing_draw2():
 def test_playing_draw4():
     card = Card("Wild", "+4")
     game = GameState()
-    bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot0 = BotPlayer(game, "Bot 0", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [bot0, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 
@@ -313,10 +313,10 @@ def test_playing_draw4():
 
 def test_playing_reverse():
     game = GameState()
-    bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot0 = BotPlayer(game, "Bot 0", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [bot0, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 
@@ -356,10 +356,10 @@ def test_playing_reverse():
 
 def test_playing_skip():
     game = GameState()
-    bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot0 = BotPlayer(game, "Bot 0", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [bot0, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 
@@ -402,9 +402,9 @@ def test_choose_color(card, manual_input, correct_color):
     game = GameState()
 
     user_player = UserPlayerTextController(game, "User", "User")
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [user_player, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 
@@ -428,10 +428,10 @@ win_testing_cases = [
 @pytest.mark.parametrize("card,player_index", win_testing_cases)
 def test_win_condition(card, player_index):
     game = GameState()
-    bot0 = BotPlayer(game, "Bot 0", "Bot", play_card_delay=0)
-    bot1 = BotPlayer(game, "Bot 1", "Bot", play_card_delay=0)
-    bot2 = BotPlayer(game, "Bot 2", "Bot", play_card_delay=0)
-    bot3 = BotPlayer(game, "Bot 3", "Bot", play_card_delay=0)
+    bot0 = BotPlayer(game, "Bot 0", play_card_delay=0)
+    bot1 = BotPlayer(game, "Bot 1", play_card_delay=0)
+    bot2 = BotPlayer(game, "Bot 2", play_card_delay=0)
+    bot3 = BotPlayer(game, "Bot 3", play_card_delay=0)
     player_list = [bot0, bot1, bot2, bot3]
     director = GameDirector(player_list, game)
 

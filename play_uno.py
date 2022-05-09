@@ -20,11 +20,11 @@ def main():
     
     game = GameState()
 
-    user_player = UserPlayerTextController(game, "User", "User")
-    bot0 = BotPlayer(game, "Bot 0", "Bot")
-    bot1 = BotPlayer(game, "Bot 1", "Bot")
-    bot2 = BotPlayer(game, "Bot 2", "Bot")
-    bot3 = BotPlayer(game, "Bot 3", "Bot")
+    user_player = UserPlayerTextController(game, "User")
+    bot0 = BotPlayer(game, "Bot 0")
+    bot1 = BotPlayer(game, "Bot 1")
+    bot2 = BotPlayer(game, "Bot 2")
+    bot3 = BotPlayer(game, "Bot 3")
     player_list = [user_player, bot1, bot2, bot3]
 
     view = ColorTextView(player_list, game)

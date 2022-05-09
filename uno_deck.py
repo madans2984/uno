@@ -24,14 +24,20 @@ class Card:
         """
         self._color = color
         self._symbol = symbol
-        self.chosen_color = ""
+        self._chosen_color = ""
+
+    def choose_color(self, new_color):
+        if self.color == "Wild":
+            self._chosen_color = new_color
+            return True
+        return False
 
     def strip_chosen_color(self):
         """
-        Reset chosen_color back to "", in case it had been defined by a player
+        Reset _chosen_color back to "", in case it had been defined by a player
         before.
         """
-        self.chosen_color = ""
+        self._chosen_color = ""
 
     def is_special(self):
         if (self.symbol == "Reverse" or self.symbol == "Skip"
@@ -47,14 +53,24 @@ class Card:
         return self._color
 
     @property
+    def chosen_color(self):
+        return self._chosen_color
+
+    @property
     def symbol(self):
         return self._symbol
 
     def __repr__(self):
-        if self.symbol == "":
-            return f"{self.color}"
-        else:
-            return f"{self.color} {self.symbol}"
+        if self._color == "Wild":
+            if self.chosen_color != "":
+                if self.symbol == "":
+                    return f"{self._color} ({self.chosen_color})"
+                else:
+                    return f"{self._color} {self.symbol} ({self.chosen_color})"
+            else:
+                if self.symbol == "":
+                    return f"{self.color}"
+        return f"{self.color} {self.symbol}"
 
 class Deck:
     """
@@ -146,3 +162,11 @@ class Deck:
 
     def __repr__(self):
         return f"Deck with cards {self.cards}"
+
+
+# deck = Deck()
+# print(deck.cards)
+
+# card = Card("Wild", "+4")
+# card.choose_color("Red")
+# print(card)

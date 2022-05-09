@@ -57,7 +57,7 @@ class GameState:
             self.draw_pile.shuffle()
         self.discard_pile.add_to_top(cards[-1])
 
-    def play(self, card):
+    def play_card(self, card):
         """
         Play a Card onto the top of the discard_pile Deck.
         
@@ -68,12 +68,12 @@ class GameState:
 
     def draw(self, num_cards=1):
         """
-        Draw a Card from the top of the draw_pile Deck.
+        Draw card(s) from the top of the draw_pile Deck.
 
         Args:
             num_cards: An int representing the number of cards to draw.
         Returns:
-            The drawn Card.
+            A list of the drawn cards.
         """
         if self.draw_pile.size() < 5:
             self.reuse_discard_pile()
@@ -156,31 +156,54 @@ class GameDirector:
         game: A GameState instance representing the parts of the game that
             players can interact with.
         players: A list of Player instances (either users or bots).
-        current_player_index
-
+        current_player_index: The index in the players list (0-3) of the player
+            being/to-be called.
     """
 
     def __init__(self, player_list, game_state):
+        """
+        Initialize the GameDirector instance.
+
+        Args:
+            players_list: A list of Player instances (either users or bots).
+            game_state: A GameState instance for the new game.
+        """
         self.game = game_state
         self.players = player_list
         self.current_player_index = 0
 
     def current_player(self):
+        """
+        Return the player instance refered to by the current_player_index.
+        """
         return self.players[self.current_player_index]
 
     def handle_reverse(self):
+        """
+        Reverse the direction of the game if the action has not yet been
+        handled (and do nothing if there is no reverse or it has already been
+        handled).
+        """
         if self.game.current_action == "Reverse":
             self.game.reverse_direction()
             self.game.current_action = None
 
     def call_the_player(self):
+        """
+        Get the current player to take their turn (handle action that refer to
+        them like drawing card or being skipped, and if they don't have to do
+        that, then play a card of their choice).
+        """
         self.current_player().take_turn()
 
     def go_to_next_player(self):
+        """
+        Change current_player_index to the correct next int using the game's direction and loop at the bounds of the list.
+        """
         new_index = self.current_player_index + self.game.direction
-        if new_index > 3:
+        if new_index > len(self.players)-1:
             self.current_player_index = 0
         elif new_index < 0:
-            self.current_player_index = 3
+            self.current_player_index = len(self.players)-1
         else:
             self.current_player_index = new_index
