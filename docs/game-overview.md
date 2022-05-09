@@ -23,9 +23,10 @@ We made two main modifications to our game rules compared to how UNO is typicall
 To start the game, the top card in the Draw Pile is flipped over. If that card is an Action card, it's shuffled back in and the steps repeat until a non-Action card is pulled to be the starting card. This is the starting card of the Discard Pile and the gameplay starts from there.
 
 ### Game Demo
+[![DEMO](website_images/game_start.png)](https://youtube.com/shorts/qCfvu-JGcpI?feature=share "UNO DEMO")
+
 
 ### Game Visualizations
-![game_start](website_images/game_start.png) 
 We chose to create our game with a command line interface so we created our own visualizations for each card. 
 
 For the current card in play, we created ASCII images for each card and then used different color codes to determine which color to display. For the cards in the hand, we used unicode characters for each of the centers and created a border around it. Everything we visualized was created using different characters including the game play graphic which shows the current turn order and number of cards in each player's hands. 
