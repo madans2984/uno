@@ -10,21 +10,21 @@ BLUE = "\033[94m"
 YELLOW = "\033[93m"
 
 # Define the symbol representations for cards in the hand
-symbol_reps = { "0": "０",
-                "1": "１",
-                "2": "２",
-                "3": "３",
-                "4": "４",
-                "5": "５",
-                "6": "６",
-                "7": "７",
-                "8": "８",
-                "9": "９",
-                "Reverse": "\u27F2 ",
-                "Skip": "Ｘ",
-                "": (WHITE+"  "+BLUE), # Wild
-                "+2": "+2",
-                "+4": (WHITE+"+4"+BLUE) }
+symbol_reps = {"0": "０",
+               "1": "１",
+               "2": "２",
+               "3": "３",
+               "4": "４",
+               "5": "５",
+               "6": "６",
+               "7": "７",
+               "8": "８",
+               "9": "９",
+               "Reverse": "\u27F2 ",
+               "Skip": "Ｘ",
+               "": (WHITE+"  "+BLUE),  # Wild
+               "+2": "+2",
+               "+4": (WHITE+"+4"+BLUE)}
 
 # Define the colors used for each card color
 color_reps = {
@@ -37,20 +37,21 @@ color_reps = {
 # Define the locations of the ascii art for the big cards / representations of
 # the current card
 big_card_files = {"0": "zero.txt",
-                    "1": "one.txt",
-                    "2": "two.txt",
-                    "3": "three.txt",
-                    "4": "four.txt",
-                    "5": "five.txt",
-                    "6": "six.txt",
-                    "7": "seven.txt",
-                    "8": "eight.txt",
-                    "9" : "nine.txt",
-                    "Reverse": "reverse.txt",
-                    "Skip": "skip.txt",
-                    "": "wild_blank.txt", # Wild
-                    "+2": "d2.txt",
-                    "+4": "d4.txt" }
+                  "1": "one.txt",
+                  "2": "two.txt",
+                  "3": "three.txt",
+                  "4": "four.txt",
+                  "5": "five.txt",
+                  "6": "six.txt",
+                  "7": "seven.txt",
+                  "8": "eight.txt",
+                  "9": "nine.txt",
+                  "Reverse": "reverse.txt",
+                  "Skip": "skip.txt",
+                  "": "wild_blank.txt",  # Wild
+                  "+2": "d2.txt",
+                  "+4": "d4.txt"}
+
 
 def put_in_card(symbol):
     """
@@ -69,6 +70,7 @@ def put_in_card(symbol):
     symbol_rep = symbol_reps[symbol]
     card[2] = "| " + symbol_rep + " |"
     return card
+
 
 def get_big_card(symbol):
     """
@@ -90,6 +92,7 @@ def get_big_card(symbol):
         card[line_num] = card[line_num].strip("\n")
     return card
 
+
 def color_card_rep(card_rep, color):
     """
     Color the card representation by adding color escape codes to the beginning
@@ -107,7 +110,7 @@ def color_card_rep(card_rep, color):
         while True:
             for color_key in color_reps:
                 card_rep[row_num] = (color_reps[color_key] +
-                                        card_rep[row_num] + WHITE)
+                                     card_rep[row_num] + WHITE)
                 row_num += 1
                 if row_num >= len(card_rep):
                     return card_rep
@@ -115,6 +118,7 @@ def color_card_rep(card_rep, color):
         for row_num in range(len(card_rep)):
             card_rep[row_num] = color_reps[color] + card_rep[row_num] + WHITE
         return card_rep
+
 
 def print_cards(card_list):
     """
@@ -136,12 +140,14 @@ def print_cards(card_list):
     for row in print_rows:
         print(row)
 
+
 def other_players_as_big_card(players_rep):
     """
     Add more blank lines to the top and bottom of a list of strings in order to
     make it the same size as a big card.
 
-    This is used for displaying the current card and player diamond next to each other.
+    This is used for displaying the current card and player diamond next to
+    each other.
     """
     big_card_lines = 11
     big_card_players_rep = []

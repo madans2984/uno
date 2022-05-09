@@ -4,6 +4,7 @@ Classes representing uno cards and a deck of uno cards.
 
 import random
 
+
 class Card:
     """
     A representation of an Uno card.
@@ -14,6 +15,7 @@ class Card:
         _chosen_color: A string representing the color chosen by the player
                 when _color is "Wild".
     """
+
     def __init__(self, color, symbol):
         """
         Create an Uno card object with a color and symbol/action.
@@ -49,27 +51,44 @@ class Card:
         self._chosen_color = ""
 
     def is_special(self):
+        """
+        Return whether or not the card has a special non-number symbol.
+        """
         if (self.symbol == "Reverse" or self.symbol == "Skip"
             or self.symbol == "+2" or self.symbol == "+4"
-            or self.symbol == ""):
+                or self.symbol == ""):
             return True
         return False
 
     @property
     def color(self):
+        """
+        Return the card's private attribute _color if the card is not Wild, or
+        _chosen_color if the card is Wild and the color has been chosen.
+        """
         if self._color == "Wild" and self.chosen_color != "":
             return self.chosen_color
         return self._color
 
     @property
     def symbol(self):
+        """
+        Return the private attribute _symbol.
+        """
         return self._symbol
 
     @property
     def chosen_color(self):
+        """
+        Return the private attribute _chosen_color.
+        """
         return self._chosen_color
 
     def __repr__(self):
+        """
+        Returns a representation of the card as <color> <symbol>
+        (<chosen_color>), with chosen_color only added if applicable, overwriting the default representation of Card.
+        """
         if self._color == "Wild":
             if self.chosen_color != "":
                 if self.symbol == "":
@@ -81,10 +100,15 @@ class Card:
                     return f"{self.color}"
         return f"{self.color} {self.symbol}"
 
+
 class Deck:
     """
     A representation of an Uno deck.
+
+    Attributes:
+        cards: A list of Card instances.
     """
+
     def __init__(self, def_cards=None, is_empty=False):
         """
         Initialize a deck object.
@@ -117,25 +141,29 @@ class Deck:
 
         # If the deck is meant to be empty (e.g. the discard pile during setup)
         # then stop now
-        if is_empty: return
+        if is_empty:
+            return
 
         # Add the 112 cards in a normal uno deck
         for color in ["Red", "Blue", "Green", "Yellow"]:
-            self.cards.append(Card(color,"0"))
+            self.cards.append(Card(color, "0"))
             for _ in range(2):
-                for num in range(1,10):
-                    self.cards.append(Card(color,str(num)))
-                self.cards.append(Card(color,"Reverse"))
-                self.cards.append(Card(color,"Skip"))
-                self.cards.append(Card(color,"+2"))
+                for num in range(1, 10):
+                    self.cards.append(Card(color, str(num)))
+                self.cards.append(Card(color, "Reverse"))
+                self.cards.append(Card(color, "Skip"))
+                self.cards.append(Card(color, "+2"))
         for _ in range(6):
-            self.cards.append(Card("Wild",""))
-            self.cards.append(Card("Wild","+4"))
+            self.cards.append(Card("Wild", ""))
+            self.cards.append(Card("Wild", "+4"))
 
     def shuffle(self):
+        """
+        Shuffle the cards in the deck.
+        """
         random.shuffle(self.cards)
 
-    def draw(self,num_cards=1):
+    def draw(self, num_cards=1):
         """
         Remove an return a list of a specified number of Cards from the Deck.
 
@@ -149,18 +177,25 @@ class Deck:
         return drawn_cards
 
     def show_top(self):
+        """
+        Return the top card of the Deck without removing it.
+        """
         return self.cards[0]
 
     def add_to_top(self, new_card):
         """
+        Add a single new card to the top of the Deck.
+
         Args:
             new_card: A single Card object to be added to the top/beginning
                 of the Deck/list.
         """
-        self.cards.insert(0,new_card)
+        self.cards.insert(0, new_card)
 
     def add_to_bottom(self, new_cards):
         """
+        Add a list of cards to the bottom of the Deck.
+
         Args:
             new_cards: A list of Cards to be added to the bottom/end of the
                 Deck/list
@@ -168,7 +203,14 @@ class Deck:
         self.cards.extend(new_cards)
 
     def size(self):
+        """
+        Return the number of cards in the Deck.
+        """
         return len(self.cards)
 
     def __repr__(self):
+        """
+        Return information about the cards in the deck, overwriting the default
+        representation of Deck.
+        """
         return f"Deck with cards {self.cards}"

@@ -44,6 +44,7 @@ uno_card_creation_cases = [
     ("Wild", "+4"),
 ]
 
+
 @pytest.mark.parametrize("color,symbol", uno_card_creation_cases)
 def test_uno_card_creation(color, symbol):
     """
@@ -71,6 +72,7 @@ uno_chosen_color_cases = [
     ("Wild", "", "Blue"),
     ("Wild", "+4", "Yellow"),
 ]
+
 
 @pytest.mark.parametrize("color,symbol,chosen_color", uno_chosen_color_cases)
 def test_uno_card_chosen_color(color, symbol, chosen_color):
@@ -119,7 +121,8 @@ def test_full_deck_creation():
     print("wilds =", wilds)
     assert len(wilds) == 12
 
-    nums = [card for card in deck.cards if card.symbol in "0123456789" and card.color != "Wild"]
+    nums = [card for card in deck.cards if card.symbol in "0123456789"
+            and card.color != "Wild"]
     print("nums =", nums)
     assert len(nums) == 76
     reverses = [card for card in deck.cards if card.symbol == "Reverse"]
@@ -156,14 +159,15 @@ def test_shuffle():
 draw_cards_cases = [
     (normal_test_deck1, 1, [["Green", "2"]]),
     (normal_test_deck2, 2, [["Red", "3"], ["Green", "9"]]),
-    (normal_test_deck3, 4, [["Green","5"], ["Yellow","3"],
-        ["Blue","1"], ["Yellow","5"]]),
-    (five_actions_on_top_test_deck, 4,[["Wild", ""], ["Red", "Skip"],
-        ["Blue", "Reverse"], ["Wild", "+4"]])
+    (normal_test_deck3, 4, [["Green", "5"], ["Yellow", "3"],
+                            ["Blue", "1"], ["Yellow", "5"]]),
+    (five_actions_on_top_test_deck, 4, [["Wild", ""], ["Red", "Skip"],
+                                        ["Blue", "Reverse"], ["Wild", "+4"]])
 ]
 
+
 @pytest.mark.parametrize("test_deck_list,num_cards,drawn_cards",
-    draw_cards_cases)
+                         draw_cards_cases)
 def test_user_draw_cards(test_deck_list, num_cards, drawn_cards):
     """
     Test that a user player drawing cards from a deck removes the correct cards
@@ -199,8 +203,9 @@ def test_user_draw_cards(test_deck_list, num_cards, drawn_cards):
     assert unpack_cards(user_player.hand) == drawn_cards
     assert unpack_deck(game.draw_pile) == test_deck_list[num_cards:]
 
+
 @pytest.mark.parametrize("test_deck_list,num_cards,drawn_cards",
-    draw_cards_cases)
+                         draw_cards_cases)
 def test_bot_draw_cards(test_deck_list, num_cards, drawn_cards):
     """
     Test that a bot player drawing cards from a deck removes the correct cards
@@ -236,39 +241,42 @@ def test_bot_draw_cards(test_deck_list, num_cards, drawn_cards):
     assert unpack_cards(bot_player.hand) == drawn_cards
     assert unpack_deck(game.draw_pile) == test_deck_list[num_cards:]
 
+
 setup_dealing_cases = [
-    (normal_test_deck4,["Red", "8"],[ [["Green", "2"],
-                                ["Green", "7"],
-                                ["Red", "7"],
-                                ["Wild", ""],
-                                ["Blue", "Skip"],
-                                ["Red", "Skip"],
-                                ["Red", "0"]],
-                               [["Green", "9"],
-                                ["Wild", ""],
-                                ["Green", "6"],
-                                ["Wild", "+4"],
-                                ["Blue", "+2"],
-                                ["Yellow", "8"],
-                                ["Yellow", "3"]],
-                               [["Blue", "8"],
-                                ["Blue", "+2"],
-                                ["Green", "7"],
-                                ["Wild", "+4"],
-                                ["Red", "6"],
-                                ["Red", "2"],
-                                ["Yellow", "5"]],
-                               [["Red", "5"],
-                                ["Green", "6"],
-                                ["Green", "Reverse"],
-                                ["Green", "4"],
-                                ["Yellow", "6"],
-                                ["Green", "5"],
-                                ["Green", "0"]] ])
+    (normal_test_deck4, ["Red", "8"], [[["Green", "2"],
+                                        ["Green", "7"],
+                                        ["Red", "7"],
+                                        ["Wild", ""],
+                                        ["Blue", "Skip"],
+                                        ["Red", "Skip"],
+                                        ["Red", "0"]],
+                                       [["Green", "9"],
+                                        ["Wild", ""],
+                                        ["Green", "6"],
+                                        ["Wild", "+4"],
+                                        ["Blue", "+2"],
+                                        ["Yellow", "8"],
+                                        ["Yellow", "3"]],
+                                       [["Blue", "8"],
+                                        ["Blue", "+2"],
+                                        ["Green", "7"],
+                                        ["Wild", "+4"],
+                                        ["Red", "6"],
+                                        ["Red", "2"],
+                                        ["Yellow", "5"]],
+                                       [["Red", "5"],
+                                        ["Green", "6"],
+                                        ["Green", "Reverse"],
+                                        ["Green", "4"],
+                                        ["Yellow", "6"],
+                                        ["Green", "5"],
+                                        ["Green", "0"]]])
 ]
 
-@pytest.mark.parametrize("test_deck_list,discard,player_hands", setup_dealing_cases)
-def test_setup_dealing(test_deck_list,discard,player_hands):
+
+@pytest.mark.parametrize("test_deck_list,discard,player_hands",
+    setup_dealing_cases)
+def test_setup_dealing(test_deck_list, discard, player_hands):
     """
     Test that the players are dealt the correct cards at the beginning of the
     game.
@@ -302,16 +310,18 @@ def test_setup_dealing(test_deck_list,discard,player_hands):
 
 
 discard_pile_setup_cases = [
-    (pack_deck(normal_test_deck1),["Green", "2"]),
-    (pack_deck(normal_test_deck2),["Red", "3"]),
-    (pack_deck(one_action_on_top_test_deck),["Red", "9"]),
-    (pack_deck(five_actions_on_top_test_deck),["Blue", "5"])
+    (pack_deck(normal_test_deck1), ["Green", "2"]),
+    (pack_deck(normal_test_deck2), ["Red", "3"]),
+    (pack_deck(one_action_on_top_test_deck), ["Red", "9"]),
+    (pack_deck(five_actions_on_top_test_deck), ["Blue", "5"])
 ]
 
+
 @pytest.mark.parametrize("test_deck,discard", discard_pile_setup_cases)
-def test_setup_discard_pile(test_deck,discard):
+def test_setup_discard_pile(test_deck, discard):
     """
-    Check that the first non-special card in the deck starts at the top of the discard pile.
+    Check that the first non-special card in the deck starts at the top of the
+    discard pile.
 
     Args:
         test_deck_list: A list of cards represented by lists of strings to be
@@ -324,26 +334,27 @@ def test_setup_discard_pile(test_deck,discard):
 
 
 play_card_cases = [
-    (Card("Red","0"), Card("Red", "0"), True),
-    (Card("Green","2"), Card("Green", "0"), True),
-    (Card("Yellow","3"), Card("Red", "3"), True),
-    (Card("Red","4"), Card("Wild", ""), True),
-    (Card("Blue","5"), Card("Blue", "+2"), True),
-    (Card("Green","6"), Card("Wild", "+4"), True),
-    (Card("Yellow","0"), Card("Yellow", "Reverse"), True),
-    (Card("Red","Reverse"), Card("Blue", "Reverse"), True),
-    (Card("Blue","+2"), Card("Yellow", "+2"), True),
-    (Card("Green","+4"), Card("Blue", "+4"), True),
-    (Card("Blue","1"), Card("Red", "0"), False),
-    (Card("Green","+4"), Card("Yellow", "Reverse"), False),
-    (Card("Blue","5"), Card("Green", "+2"), False),
-    (Card("Yellow","0"), Card("Blue", "Reverse"), False),
-    (Card("Blue","+2"), Card("Yellow", "Reverse"), False)
+    (Card("Red", "0"), Card("Red", "0"), True),
+    (Card("Green", "2"), Card("Green", "0"), True),
+    (Card("Yellow", "3"), Card("Red", "3"), True),
+    (Card("Red", "4"), Card("Wild", ""), True),
+    (Card("Blue", "5"), Card("Blue", "+2"), True),
+    (Card("Green", "6"), Card("Wild", "+4"), True),
+    (Card("Yellow", "0"), Card("Yellow", "Reverse"), True),
+    (Card("Red", "Reverse"), Card("Blue", "Reverse"), True),
+    (Card("Blue", "+2"), Card("Yellow", "+2"), True),
+    (Card("Green", "+4"), Card("Blue", "+4"), True),
+    (Card("Blue", "1"), Card("Red", "0"), False),
+    (Card("Green", "+4"), Card("Yellow", "Reverse"), False),
+    (Card("Blue", "5"), Card("Green", "+2"), False),
+    (Card("Yellow", "0"), Card("Blue", "Reverse"), False),
+    (Card("Blue", "+2"), Card("Yellow", "Reverse"), False)
 
 ]
 
+
 @pytest.mark.parametrize("current_card,played_card,result", play_card_cases)
-def test_play_card(current_card,played_card,result):
+def test_play_card(current_card, played_card, result):
     """
     Check that the player.play_card() function properly allows and refuses
     cards that are and aren't allowed to be played during that turn.
@@ -361,6 +372,7 @@ def test_play_card(current_card,played_card,result):
     player = BotPlayer(game, "Bot")
     player.hand = [played_card]
     assert player.play_card(played_card) == result
+
 
 def test_playing_draw2():
     """
@@ -439,6 +451,7 @@ def test_playing_draw4():
     # skipped by the +4)
     assert director.current_player() == bot1
 
+
 def test_playing_reverse():
     """
     Check that playing a "Reverse" makes the turn order switch.
@@ -487,6 +500,7 @@ def test_playing_reverse():
     director.go_to_next_player()
     # Check that the next player is Bot 2
     assert director.current_player() == bot2
+
 
 def test_playing_skip():
     """
@@ -539,6 +553,7 @@ choose_color_cases = [
     (Card("Wild", "+4"), "y", "Yellow"),
 ]
 
+
 @pytest.mark.parametrize("card,manual_input,correct_color", choose_color_cases)
 def test_choose_color(card, manual_input, correct_color):
     """
@@ -554,7 +569,7 @@ def test_choose_color(card, manual_input, correct_color):
     game = GameState()
     user_player = UserPlayerTextController(game, "User")
     user_player.hand.insert(0, card)
-    user_player.play_card(card,choose_manual_input=manual_input)
+    user_player.play_card(card, choose_manual_input=manual_input)
 
     assert game.current_color() == correct_color
     assert game.discard_pile.show_top().color == correct_color
@@ -569,13 +584,15 @@ win_testing_cases = [
     Card("Wild", "+4")
 ]
 
+
 @pytest.mark.parametrize("card", win_testing_cases)
 def test_win_condition(card):
     """
     Check that a player playing their last card results in a win being flagged.
 
     Args:
-        card: A Card instance that is the last/only card that a player plays to win.
+        card: A Card instance that is the last/only card that a player plays to
+        win.
     """
     game = GameState()
     player = BotPlayer(game, "Bot 0", play_card_delay=0)

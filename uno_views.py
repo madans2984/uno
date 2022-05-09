@@ -3,13 +3,14 @@ Classes representing viewing modes for the uno game.
 """
 
 from abc import ABC, abstractmethod
-from uno_text_view_helpers import (
+from uno_color_text_view_helpers import (
     put_in_card,
     get_big_card,
     color_card_rep,
     print_cards,
     other_players_as_big_card
 )
+
 
 class UnoView(ABC):
     """
@@ -46,7 +47,7 @@ class UnoView(ABC):
         self.display_other_players_and_current_card()
         print(f"It's {current_player.name}'s turn.")
         if ((show_bot_hands is True or current_player.player_type == "User")
-            and self.game.current_action is None):
+                and self.game.current_action is None):
             self.display_hand(current_player)
 
     @abstractmethod
@@ -74,6 +75,14 @@ class UnoView(ABC):
         An abstract method for showing the current player's hand.
         """
 
+    def __repr__(self):
+        """
+        Overwrite the default representation to return information about the
+        the view's class, players and game attributes.
+        """
+        return f"{self.__class__.__name__} with players: {self.players} and " \
+            f"game: {self.game}."
+
 
 class TextView(UnoView):
     """
@@ -92,7 +101,8 @@ class TextView(UnoView):
         """
         Print the current card as plain text.
         """
-        print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}.")
+        print(f"The current card is {self.game.current_color()} "
+            f"{self.game.current_symbol()}.")
 
     def display_hand(self, player):
         """
@@ -108,6 +118,7 @@ class TextView(UnoView):
         """
         self.display_other_players()
         self.display_current_card()
+
 
 class ColorTextView(UnoView):
     """
@@ -130,7 +141,8 @@ class ColorTextView(UnoView):
         Print to the terminal a colored ascii art representation of the current
         card.
         """
-        print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}.")
+        print(f"The current card is {self.game.current_color()} "
+            f"{self.game.current_symbol()}.")
         card_rep = get_big_card(self.game.current_symbol())
         card_rep = color_card_rep(card_rep, self.game.current_color())
         players_rep = self.display_other_players()
@@ -143,7 +155,8 @@ class ColorTextView(UnoView):
         card and the other players and the number of cards they have as an
         ascii art diamond in one block.
         """
-        print(f"The current card is {self.game.current_color()} {self.game.current_symbol()}.")
+        print(f"The current card is {self.game.current_color()} "
+            f"{self.game.current_symbol()}.")
         card_rep = get_big_card(self.game.current_symbol())
         card_rep = color_card_rep(card_rep, self.game.current_color())
         players_rep = self.make_other_players_diamond()
@@ -163,7 +176,7 @@ class ColorTextView(UnoView):
             card_reps.append(card_rep)
 
         index_str = ""
-        for i in range(1,len(player.hand)+1):
+        for i in range(1, len(player.hand)+1):
             index_str += str(i).center(6)
 
         print_cards(card_reps)
@@ -206,23 +219,27 @@ class ColorTextView(UnoView):
 
         # Create centered blocks of two rows with the player names and card
         # counts with the first player on the bottom, and the second to the left
-        top = [ self.players[2].name.center(half_width*2 + 1),
-                card_count_strings[2].center(half_width*2 + 1) ]
-        bottom = [ self.players[0].name.center(half_width*2 + 1),
-                card_count_strings[0].center(half_width*2 + 1) ]
-        left = [ self.players[1].name.ljust(half_width),
-                card_count_strings[1].ljust(half_width) ]
-        right = [ self.players[3].name.rjust(half_width),
-                card_count_strings[3].rjust(half_width) ]
+        top = [self.players[2].name.center(half_width*2 + 1),
+               card_count_strings[2].center(half_width*2 + 1)]
+        bottom = [self.players[0].name.center(half_width*2 + 1),
+                  card_count_strings[0].center(half_width*2 + 1)]
+        left = [self.players[1].name.ljust(half_width),
+                card_count_strings[1].ljust(half_width)]
+        right = [self.players[3].name.rjust(half_width),
+                 card_count_strings[3].rjust(half_width)]
 
         # Create the arrow rows to point clockwise for forward, and
         # counterclockwise for backwards
         if self.game.direction == 1:
-            arrows = [ne_arrow.center(half_width) + " " + se_arrow.center(half_width),
-                      nw_arrow.center(half_width) + " " + sw_arrow.center(half_width)]
+            arrows = [ne_arrow.center(half_width) + " " +
+                        se_arrow.center(half_width),
+                      nw_arrow.center(half_width) + " " +
+                        sw_arrow.center(half_width)]
         else:
-            arrows = [sw_arrow.center(half_width) + " " + nw_arrow.center(half_width),
-                      se_arrow.center(half_width) + " " + ne_arrow.center(half_width)]
+            arrows = [sw_arrow.center(half_width) + " " +
+                        nw_arrow.center(half_width),
+                      se_arrow.center(half_width) + " " +
+                        ne_arrow.center(half_width)]
 
         # Assemble all of the blocks
         full = [top[0],

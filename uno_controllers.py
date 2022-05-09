@@ -6,6 +6,7 @@ import random
 import time
 from abc import ABC, abstractmethod
 
+
 class Player(ABC):
     """
     An abstract representation of an uno player.
@@ -111,7 +112,7 @@ class Player(ABC):
                 declare the wild card to be if it is played. If the card is not
                 a wild card, this is ignored.
         """
-        if self.check_play(card): # If the play is valid
+        if self.check_play(card):  # If the play is valid
             # Announce the played card
             print(f"{self.name} played {card}.")
 
@@ -124,7 +125,7 @@ class Player(ABC):
             if (card.symbol == "Reverse" or
                 card.symbol == "Skip" or
                 card.symbol == "+2" or
-                card.symbol == "+4"):
+                    card.symbol == "+4"):
                 self.game.current_action = card.symbol
 
             # Add the card to the top of the game's discard pile
@@ -144,7 +145,7 @@ class Player(ABC):
         """
         if (card.color == self.game.current_card().color or
             card.symbol == self.game.current_card().symbol or
-            card.color == "Wild"):
+                card.color == "Wild"):
             return True
         return False
 
@@ -220,7 +221,9 @@ class Player(ABC):
         """
 
     def __repr__(self):
-        return f"Player {self.name} with cards: {self.hand}"
+        return f"{self.__class__.__name__} player {self.name} with " \
+            f"cards: {self.hand}"
+
 
 class UserPlayerTextController(Player):
     """
@@ -237,15 +240,16 @@ class UserPlayerTextController(Player):
         """
         while True:
             try:
-                index = int(input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
+                index = int(
+                    input(f"Enter the index of the card you want to play (1-{self.num_cards()}): "))
                 if self.play_card(self.hand[int(index-1)]):
                     return
                 print("Invalid play. Your card must match the color or the"
-                    " symbol of the current card, \n"
-                    "or be a Wild card. Please try again.")
+                      " symbol of the current card, \n"
+                      "or be a Wild card. Please try again.")
             except (IndexError, ValueError):
                 print(f"Invalid input. Please enter an integer between 1 and"
-                    f" {self.num_cards()}.")
+                      f" {self.num_cards()}.")
 
     def choose_color(self, card, manual_input=None):
         """
@@ -263,7 +267,7 @@ class UserPlayerTextController(Player):
         while True:
             if manual_input is None:
                 text = input("What color should the new card be?"
-                    " (r/g/b/y): ")
+                             " (r/g/b/y): ")
             else:
                 text = manual_input
 
@@ -281,8 +285,8 @@ class UserPlayerTextController(Player):
                 return card
             else:
                 print("That is not a valid input. Please enter 'r' for"
-                    " Red, 'g' for Green, 'b' for Blue, or 'y' for"
-                    " Yellow.")
+                      " Red, 'g' for Green, 'b' for Blue, or 'y' for"
+                      " Yellow.")
 
 
 class BotPlayer(Player):
@@ -315,6 +319,7 @@ class BotPlayer(Player):
         Returns:
             The card with the chosen_color changed to the player's choice.
         """
-        card.set_chosen_color(random.choice(["Red", "Blue", "Green", "Yellow"]))
+        card.set_chosen_color(random.choice(
+            ["Red", "Blue", "Green", "Yellow"]))
         print(f"{self.name} chose {card.color}.")
         return card

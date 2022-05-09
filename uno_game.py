@@ -4,6 +4,7 @@ Classes representing the uno game state and the game director.
 
 from uno_deck import Deck
 
+
 class GameState:
     """
     A representation of the uno game's state, with the parts of the game that
@@ -141,11 +142,12 @@ class GameState:
         Overwrite the representation of the GameState class to include the
         current card, direction, and contents of the draw and discard piles.
         """
-        return (f"Uno GameState with current_card(): {self.current_card()} and"
-            f"direction: {self.direction}\n"
-            f"draw_pile ({self.draw_pile.size()} card): {self.draw_pile} \n"
-            f"and discard_pile ({self.discard_pile.size()} card): "
-            f"{self.discard_pile}")
+        return (f"Uno GameState with current_card(): {self.current_card()}, "
+                f"direction: {self.direction}, "
+                f"draw_pile ({self.draw_pile.size()} card): {self.draw_pile} "
+                f"and discard_pile ({self.discard_pile.size()} card): "
+                f"{self.discard_pile}")
+
 
 class GameDirector:
     """
@@ -208,3 +210,10 @@ class GameDirector:
             self.current_player_index = len(self.players)-1
         else:
             self.current_player_index = new_index
+
+    def __repr__(self):
+        """
+        Overwrite the default representation to return information about the GameDirector's players and game attributes.
+        """
+        return f"GameDirector with players: {self.players} and " \
+            f"game: {self.game}."
