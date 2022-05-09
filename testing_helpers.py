@@ -5,6 +5,9 @@ Helper functions for unit testing.
 from uno_deck import *
 
 def unpack_cards(card_obj_list):
+    """
+    Turn a list of cards into
+    """
     return [[card.color, card.symbol] for card in card_obj_list]
 
 def pack_cards(color_symbol_list):
