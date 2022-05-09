@@ -162,11 +162,3 @@ class Deck:
 
     def __repr__(self):
         return f"Deck with cards {self.cards}"
-
-
-# deck = Deck()
-# print(deck.cards)
-
-# card = Card("Wild", "+4")
-# card.choose_color("Red")
-# print(card)
