@@ -92,7 +92,8 @@ def get_big_card(symbol):
 
 def color_card_rep(card_rep, color):
     """
-    Color the card representation by adding color escape codes to the beginning and end of each string in the list.
+    Color the card representation by adding color escape codes to the beginning
+    and end of each string in the list.
 
     Args:
         color: A string representing the the color of an uno card (as it
@@ -105,10 +106,10 @@ def color_card_rep(card_rep, color):
         row_num = 0
         while True:
             for color_key in color_reps:
-                card_rep[row_num] = (color_reps[color_key] + 
+                card_rep[row_num] = (color_reps[color_key] +
                                         card_rep[row_num] + WHITE)
                 row_num += 1
-                if (row_num >= len(card_rep)):
+                if row_num >= len(card_rep):
                     return card_rep
     else:
         for row_num in range(len(card_rep)):
@@ -137,7 +138,8 @@ def print_cards(card_list):
 
 def other_players_as_big_card(players_rep):
     """
-    Add more blank lines to the top and bottom of a list of strings in order to make it the same size as a big card.
+    Add more blank lines to the top and bottom of a list of strings in order to
+    make it the same size as a big card.
 
     This is used for displaying the current card and player diamond next to each other.
     """
