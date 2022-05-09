@@ -20,6 +20,9 @@ There are a few special cards which have actions associated with them.
 
 We made two main modifications to our game rules compared to how UNO is typically played. First, we don't have a rule where you need to call UNO once you have your last card. That rule relies on human observation and when playing with bots it doesn't make as much sense. Additionally we decided that special cards cannot be stacked meaning that there would be no cumulative effect for them.
 
+In terms of visual changes, we made our wilf cards rainbow instead of black.
+![wild](website_images/wild_example.png) 
+
 To start the game, the top card in the Draw Pile is flipped over. If that card is an Action card, it's shuffled back in and the steps repeat until a non-Action card is pulled to be the starting card. This is the starting card of the Discard Pile and the gameplay starts from there.
 
 ### Game Demo
